@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emir Can Özer - Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1', // Indigo
+                        secondary: '#ec4899', // Pink
+                        dark: '#0f172a',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ec4899; }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        /* Page Transition Logic */
+        .page-section { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .page-section.active { display: block; opacity: 1; }
+
+        /* Lightbox Specific */
+        #lightbox { transition: opacity 0.3s ease; }
+        #lightbox.hidden { opacity: 0; pointer-events: none; }
+        #lightbox:not(.hidden) { opacity: 1; pointer-events: auto; }
+    </style>
+</head>
+<body class="bg-dark text-white overflow-x-hidden selection:bg-primary selection:text-white font-sans">
+
+    <!-- Background Animation -->
+    <div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-overlay filter blur-3xl opacity-70 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full mix-blend-overlay filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-overlay filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="javascript:switchPage('home')" class="text-2xl font-bold tracking-tighter hover:text-primary transition-colors">
+                My<span class="text-primary">Portfolio</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="javascript:switchPage('home')" class="hover:text-primary transition-colors" data-lang="nav_home">Home</a>
+                <a href="javascript:switchPage('social')" class="hover:text-primary transition-colors" data-lang="nav_social">Social Media</a>
+                <a href="javascript:switchPage('web')" class="hover:text-primary transition-colors" data-lang="nav_web">Web</a>
+                <a href="#contact" onclick="switchPage('home')" class="px-4 py-2 bg-primary rounded-full hover:bg-secondary transition-all transform hover:scale-105" data-lang="nav_contact">Contact Me</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-2xl" id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-dark absolute w-full border-b border-gray-800" id="mobile-menu">
+            <div class="flex flex-col p-6 space-y-4">
+                <a href="javascript:switchPage('home')" class="hover:text-primary" data-lang="nav_home">Home</a>
+                <a href="javascript:switchPage('social')" class="hover:text-primary" data-lang="nav_social">Social Media</a>
+                <a href="javascript:switchPage('web')" class="hover:text-primary" data-lang="nav_web">Web</a>
+                <a href="#contact" class="text-primary" data-lang="nav_contact">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LIGHTBOX MODAL (Full Screen Image Viewer) -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center backdrop-blur-sm">
+        <!-- Close Button -->
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-4xl hover:text-primary z-[102] transition-colors">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <!-- Previous Button -->
+        <button onclick="changeSlide(-1)" class="absolute left-4 md:left-10 text-white text-3xl md:text-5xl hover:text-primary z-[102] transition-transform hover:-translate-x-1 p-4">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <!-- Image Container -->
+        <div class="relative max-w-5xl max-h-[80vh] w-full px-4">
+            <img id="lightbox-img" src="" class="w-full h-full object-contain rounded-lg shadow-2xl border border-white/10" alt="Full View">
+            <div class="mt-4 text-center">
+                <h3 id="lightbox-title" class="text-xl font-bold text-white"></h3>
+                <p id="lightbox-desc" class="text-gray-400 text-sm"></p>
+            </div>
+        </div>
+
+        <!-- Next Button -->
+        <button onclick="changeSlide(1)" class="absolute right-4 md:right-10 text-white text-3xl md:text-5xl hover:text-primary z-[102] transition-transform hover:translate-x-1 p-4">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- MAIN PAGE CONTENT -->
+    <div id="home-page" class="page-section active">
+        
+        <!-- Hero Section -->
+        <section id="home" class="relative z-10 h-screen flex items-center justify-center px-6">
+            <div class="text-center max-w-3xl">
+                <p class="text-primary font-medium mb-4" data-aos="fade-down" data-aos-delay="100" data-lang="hero_greeting">Hello, I'm</p>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight" data-aos="zoom-in" data-aos-delay="200">
+                    Emir Can <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Özer</span>
+                </h1>
+                <h2 class="text-2xl md:text-4xl text-gray-400 mb-8 h-12" data-aos="fade-up" data-aos-delay="400">
+                    <span data-lang="hero_iam">I build</span> <span id="typewriter" class="text-white"></span><span class="cursor-blink">|</span>
+                </h2>
+                <div class="flex gap-4 justify-center" data-aos="fade-up" data-aos-delay="600">
+                    <a href="#projects" class="px-8 py-3 bg-white text-dark font-bold rounded-full hover:bg-gray-200 transition-all transform hover:-translate-y-1" data-lang="btn_work">
+                        View Work
+                    </a>
+                    <a href="#contact" class="px-8 py-3 border border-white/20 rounded-full hover:bg-white/10 transition-all backdrop-blur-sm" data-lang="btn_contact">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="relative z-10 py-24 px-6 bg-dark/50">
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative group" data-aos="fade-right">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative rounded-2xl overflow-hidden aspect-square">
+                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Profile" class="object-cover w-full h-full transform transition duration-500 hover:scale-110">
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <h2 class="text-4xl font-bold mb-6" data-lang="about_title">About Me</h2>
+                    <p class="text-gray-400 mb-6 text-lg leading-relaxed" data-lang="about_desc">
+                        I am a creative developer passionate about building digital experiences that matter. I specialize in turning complex problems into simple, beautiful, and intuitive interface designs.
+                    </p>
+                    
+                    <h3 class="text-xl font-semibold mb-4" data-lang="tech_stack">Tech Stack</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 glass rounded-lg text-sm hover:border-primary transition-colors cursor-default">JavaScript</span>
+                        <span class="px-4 py-2 glass rounded-lg text-sm hover:border-primary transition-colors cursor-default">React</span>
+                        <span class="px-4 py-2 glass rounded-lg text-sm hover:border-primary transition-colors cursor-default">Tailwind</span>
+                        <span class="px-4 py-2 glass rounded-lg text-sm hover:border-primary transition-colors cursor-default">Node.js</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="relative z-10 py-24 px-6 bg-dark/50">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8" data-aos="zoom-in" data-lang="contact_title">Let's Work Together</h2>
+                <form class="max-w-md mx-auto space-y-4" data-aos="fade-up" data-aos-delay="200">
+                    <input type="text" data-lang-placeholder="ph_name" placeholder="Name" class="w-full p-4 glass rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary border border-transparent transition-colors">
+                    <input type="email" data-lang-placeholder="ph_email" placeholder="Email" class="w-full p-4 glass rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary border border-transparent transition-colors">
+                    <textarea rows="4" data-lang-placeholder="ph_message" placeholder="Message" class="w-full p-4 glass rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary border border-transparent transition-colors"></textarea>
+                    <button class="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-lg font-bold text-white hover:opacity-90 transition-opacity transform hover:scale-[1.02]" data-lang="btn_send">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- SOCIAL MEDIA HUB PAGE -->
+    <div id="social-page" class="page-section min-h-screen pt-32 px-6 pb-12">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-down" data-lang="social_title">Social Media Hub</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Platform 1: Instagram -->
+                <div onclick="openSocialGallery('instagram')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center justify-center group hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+                    <i class="fab fa-instagram text-5xl mb-4 text-pink-500 group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold">Instagram</h3>
+                    <p class="text-gray-400 text-sm mt-2" data-lang="click_view">Click to view gallery</p>
+                </div>
+                
+                <!-- Platform 2: Twitter -->
+                <div onclick="openSocialGallery('twitter')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center justify-center group hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+                    <i class="fab fa-twitter text-5xl mb-4 text-blue-400 group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold">Twitter / X</h3>
+                    <p class="text-gray-400 text-sm mt-2" data-lang="click_view">Click to view gallery</p>
+                </div>
+
+                <!-- Platform 3: LinkedIn -->
+                <div onclick="openSocialGallery('linkedin')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center justify-center group hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+                    <i class="fab fa-linkedin text-5xl mb-4 text-blue-600 group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold">LinkedIn</h3>
+                    <p class="text-gray-400 text-sm mt-2" data-lang="click_view">Click to view gallery</p>
+                </div>
+
+                <!-- Platform 4: YouTube -->
+                <div onclick="openSocialGallery('youtube')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center justify-center group hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+                    <i class="fab fa-youtube text-5xl mb-4 text-red-600 group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold">YouTube</h3>
+                    <p class="text-gray-400 text-sm mt-2" data-lang="click_view">Click to view gallery</p>
+                </div>
+
+                <!-- Platform 5: GitHub -->
+                <div onclick="openSocialGallery('github')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center justify-center group hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+                    <i class="fab fa-github text-5xl mb-4 text-white group-hover:text-primary transition-colors"></i>
+                    <h3 class="text-xl font-bold">GitHub</h3>
+                    <p class="text-gray-400 text-sm mt-2" data-lang="click_view">Click to view gallery</p>
+                </div>
+
+                <!-- Platform 6: Discord -->
+                <div onclick="openSocialGallery('discord')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center justify-center group hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+                    <i class="fab fa-discord text-5xl mb-4 text-indigo-500 group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold">Discord</h3>
+                    <p class="text-gray-400 text-sm mt-2" data-lang="click_view">Click to view gallery</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button onclick="switchPage('home')" class="px-6 py-2 border border-white/20 rounded-full hover:bg-white/10" data-lang="btn_back">Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DYNAMIC SOCIAL GALLERY DETAIL PAGE (Initially Hidden) -->
+    <div id="social-detail-page" class="page-section min-h-screen pt-32 px-6 pb-12">
+        <div class="max-w-6xl mx-auto">
+            <h2 id="gallery-title" class="text-4xl font-bold mb-4 text-center">Platform Gallery</h2>
+            <p class="text-center text-gray-400 mb-12" data-lang="gallery_subtitle">Explore my content from this platform</p>
+            
+            <!-- Dynamic Grid (Populated by JS) -->
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Items will be injected here -->
+            </div>
+
+            <div class="text-center mt-12">
+                <button onclick="switchPage('social')" class="px-6 py-2 border border-white/20 rounded-full hover:bg-white/10" data-lang="btn_back_social">Back to Social Hub</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEB PROJECTS PAGE -->
+    <div id="web-page" class="page-section min-h-screen pt-32 px-6 pb-12">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-down" data-lang="web_title">Web Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Example Web Project 1 -->
+                <div class="glass rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300">
+                    <div class="h-40 bg-gray-800 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-4xl font-bold opacity-30">WEB 1</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Corporate Site</h3>
+                        <p class="text-gray-400 text-sm">Modern business website.</p>
+                        <a href="#" class="mt-4 inline-block text-primary text-sm font-bold hover:text-white">Visit Site &rarr;</a>
+                    </div>
+                </div>
+                <!-- Example Web Project 2 -->
+                <div class="glass rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300">
+                    <div class="h-40 bg-gray-800 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-500 to-teal-600 opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-4xl font-bold opacity-30">WEB 2</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">SaaS Platform</h3>
+                        <p class="text-gray-400 text-sm">Subscription management.</p>
+                        <a href="#" class="mt-4 inline-block text-primary text-sm font-bold hover:text-white">Visit Site &rarr;</a>
+                    </div>
+                </div>
+                <!-- Example Web Project 3 -->
+                <div class="glass rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300">
+                    <div class="h-40 bg-gray-800 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-600 opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-4xl font-bold opacity-30">WEB 3</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Blog Template</h3>
+                        <p class="text-gray-400 text-sm">CMS integrated blog.</p>
+                        <a href="#" class="mt-4 inline-block text-primary text-sm font-bold hover:text-white">Visit Site &rarr;</a>
+                    </div>
+                </div>
+                <!-- Repeat for 3 more to make 6 -->
+                <div class="glass rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300">
+                    <div class="h-40 bg-gray-800 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-pink-500 to-rose-600 opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-4xl font-bold opacity-30">WEB 4</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Portfolio V1</h3>
+                        <p class="text-gray-400 text-sm">Old portfolio version.</p>
+                        <a href="#" class="mt-4 inline-block text-primary text-sm font-bold hover:text-white">Visit Site &rarr;</a>
+                    </div>
+                </div>
+                <div class="glass rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300">
+                    <div class="h-40 bg-gray-800 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-blue-600 opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-4xl font-bold opacity-30">WEB 5</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">API Service</h3>
+                        <p class="text-gray-400 text-sm">Backend service interface.</p>
+                        <a href="#" class="mt-4 inline-block text-primary text-sm font-bold hover:text-white">Visit Site &rarr;</a>
+                    </div>
+                </div>
+                <div class="glass rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300">
+                    <div class="h-40 bg-gray-800 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-yellow-500 to-orange-600 opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-4xl font-bold opacity-30">WEB 6</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Landing Page</h3>
+                        <p class="text-gray-400 text-sm">High conversion landing.</p>
+                        <a href="#" class="mt-4 inline-block text-primary text-sm font-bold hover:text-white">Visit Site &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button onclick="switchPage('home')" class="px-6 py-2 border border-white/20 rounded-full hover:bg-white/10" data-lang="btn_back">Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        /* --- DATA FOR SOCIAL GALLERIES --- */
+        // Simulated data for each platform (6 items each as requested)
+        const socialData = {
+            instagram: [
+                { img: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800', title: 'Coffee & Code', desc: 'Morning routine working on JS.' },
+                { img: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800', title: 'Setup Tour', desc: 'My new desk setup.' },
+                { img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800', title: 'Team Meeting', desc: 'Planning the next sprint.' },
+                { img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800', title: 'Late Night', desc: 'Debugging production issues.' },
+                { img: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800', title: 'Insta Live', desc: 'Q&A session recap.' },
+                { img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800', title: 'Hackathon', desc: 'Winning 1st place!' }
+            ],
+            twitter: [
+                { img: 'https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=800', title: 'Tweet Thread', desc: 'Explaining React Hooks.' },
+                { img: 'https://images.unsplash.com/photo-1611605698383-e18e0dfcc304?w=800', title: 'Milestone', desc: 'Hit 1k followers!' },
+                { img: 'https://images.unsplash.com/photo-1555421689-492a18d9c3ad?w=800', title: 'Code Snippet', desc: 'Clean code tips.' },
+                { img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800', title: 'Analytics', desc: 'Growth chart for May.' },
+                { img: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800', title: 'Community', desc: 'Spaces discussion.' },
+                { img: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800', title: 'Profile Pic', desc: 'New branding update.' }
+            ],
+            // Generic fallback for others
+            default: [
+                { img: 'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=800', title: 'Project A', desc: 'Detail shot 1' },
+                { img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800', title: 'Project B', desc: 'Detail shot 2' },
+                { img: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800', title: 'Project C', desc: 'Detail shot 3' },
+                { img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800', title: 'Project D', desc: 'Detail shot 4' },
+                { img: 'https://images.unsplash.com/photo-1550439062-609e1531270e?w=800', title: 'Project E', desc: 'Detail shot 5' },
+                { img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800', title: 'Project F', desc: 'Detail shot 6' }
+            ]
+        };
+
+        /* --- LANGUAGE SYSTEM --- */
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_social: "Social Media",
+                nav_web: "Web",
+                nav_contact: "Contact Me",
+                hero_greeting: "Hello, I'm",
+                hero_iam: "I build",
+                btn_work: "View Work",
+                btn_contact: "Contact Me",
+                about_title: "About Me",
+                about_desc: "I am a creative developer passionate about building digital experiences that matter. I specialize in turning complex problems into simple, beautiful, and intuitive interface designs.",
+                tech_stack: "Tech Stack",
+                projects_title: "Featured Projects",
+                contact_title: "Let's Work Together",
+                btn_send: "Send Message",
+                ph_name: "Name",
+                ph_email: "Email",
+                ph_message: "Message",
+                social_title: "Social Media Hub",
+                web_title: "Web Projects",
+                btn_back: "Back to Home",
+                click_view: "Click to view gallery",
+                gallery_subtitle: "Explore my content from this platform",
+                btn_back_social: "Back to Social Hub",
+                typewriter_words: ["Websites.", "Apps.", "Experiences.", "Solutions."]
+            },
+            tr: {
+                nav_home: "Anasayfa",
+                nav_social: "Sosyal Medya",
+                nav_web: "Web",
+                nav_contact: "İletişim",
+                hero_greeting: "Merhaba, ben",
+                hero_iam: "Geliştirdiğim alanlar:",
+                btn_work: "Çalışmalar",
+                btn_contact: "İletişim",
+                about_title: "Hakkımda",
+                about_desc: "Dijital deneyimler oluşturma konusunda tutkulu yaratıcı bir geliştiriciyim. Karmaşık problemleri basit, güzel ve sezgisel arayüz tasarımlarına dönüştürme konusunda uzmanım.",
+                tech_stack: "Teknolojiler",
+                projects_title: "Öne Çıkan Projeler",
+                contact_title: "Birlikte Çalışalım",
+                btn_send: "Gönder",
+                ph_name: "İsim",
+                ph_email: "E-posta",
+                ph_message: "Mesajınız",
+                social_title: "Sosyal Medya Hesaplarım",
+                web_title: "Web Projeleri",
+                btn_back: "Anasayfaya Dön",
+                click_view: "Galeriye gitmek için tıkla",
+                gallery_subtitle: "Bu platformdaki içeriklerimi incele",
+                btn_back_social: "Sosyal Medyaya Dön",
+                typewriter_words: ["Web Siteleri.", "Uygulamalar.", "Deneyimler.", "Çözümler."]
+            }
+        };
+
+        const userLang = navigator.language || navigator.userLanguage; 
+        const lang = userLang.startsWith('tr') ? 'tr' : 'en';
+        const t = translations[lang];
+
+        document.querySelectorAll('[data-lang]').forEach(el => el.textContent = t[el.getAttribute('data-lang')]);
+        document.querySelectorAll('[data-lang-placeholder]').forEach(el => el.placeholder = t[el.getAttribute('data-lang-placeholder')]);
+
+        /* --- TYPEWRITER --- */
+        const words = t.typewriter_words;
+        let i = 0;
+        let timer;
+        function typeWriter() {
+            const heading = document.getElementById("typewriter");
+            const word = words[i];
+            const currentText = heading.textContent;
+            if (!this.isDeleting && currentText !== word) heading.textContent = word.substring(0, currentText.length + 1);
+            else if (this.isDeleting && currentText !== "") heading.textContent = word.substring(0, currentText.length - 1);
+            let typeSpeed = 100;
+            if (this.isDeleting) typeSpeed /= 2;
+            if (!this.isDeleting && currentText === word) { typeSpeed = 2000; this.isDeleting = true; }
+            else if (this.isDeleting && currentText === "") { this.isDeleting = false; i = (i + 1) % words.length; typeSpeed = 500; }
+            timer = setTimeout(typeWriter, typeSpeed);
+        }
+        document.addEventListener('DOMContentLoaded', typeWriter);
+
+        /* --- PAGE NAVIGATION --- */
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(el => {
+                el.classList.remove('active');
+                setTimeout(() => { if(!el.classList.contains('active')) el.style.display = 'none'; }, 500); 
+            });
+            const target = document.getElementById(pageId + (pageId.includes('page') ? '' : '-page'));
+            if(target) {
+                target.style.display = 'block';
+                setTimeout(() => { target.classList.add('active'); window.scrollTo(0, 0); }, 10);
+            }
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        /* --- SOCIAL GALLERY LOGIC --- */
+        let currentGalleryImages = [];
+        let currentImageIndex = 0;
+
+        function openSocialGallery(platform) {
+            // Get data or fallback
+            const data = socialData[platform] || socialData.default;
+            currentGalleryImages = data; // Save for lightbox
+
+            // Populate Grid
+            const grid = document.getElementById('gallery-grid');
+            const title = document.getElementById('gallery-title');
+            
+            title.textContent = platform.charAt(0).toUpperCase() + platform.slice(1) + " Gallery";
+            grid.innerHTML = ''; // Clear previous
+
+            data.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "glass rounded-xl overflow-hidden group cursor-pointer hover:scale-105 transition-transform duration-300";
+                card.onclick = () => openLightbox(index); // Add click handler for lightbox
+
+                card.innerHTML = `
+                    <div class="h-48 bg-gray-800 relative overflow-hidden">
+                        <img src="${item.img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">${item.title}</h3>
+                        <p class="text-gray-400 text-sm">${item.desc}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            switchPage('social-detail');
+        }
+
+        /* --- LIGHTBOX LOGIC --- */
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightboxContent();
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        function changeSlide(direction) {
+            currentImageIndex += direction;
+            // Loop around logic
+            if (currentImageIndex >= currentGalleryImages.length) currentImageIndex = 0;
+            if (currentImageIndex < 0) currentImageIndex = currentGalleryImages.length - 1;
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            const item = currentGalleryImages[currentImageIndex];
+            const img = document.getElementById('lightbox-img');
+            const title = document.getElementById('lightbox-title');
+            const desc = document.getElementById('lightbox-desc');
+            
+            // Simple fade out/in effect manually or just swap
+            img.src = item.img;
+            title.textContent = item.title;
+            desc.textContent = item.desc;
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowRight") changeSlide(1);
+            if (e.key === "ArrowLeft") changeSlide(-1);
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('shadow-lg');
+            else nav.classList.remove('shadow-lg');
+        });
+    </script>
+</body>
+</html>
