@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emir Can Özer - Portfolio</title>
+    <title>Emir Can Özer - Solopreneur Portfolio</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- AOS Animation Library CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -69,24 +65,22 @@
 </head>
 <body class="bg-dark text-white overflow-x-hidden selection:bg-primary selection:text-white font-sans">
 
-    <!-- Background Animation -->
     <div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-overlay filter blur-3xl opacity-70 animate-blob"></div>
         <div class="absolute top-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full mix-blend-overlay filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
         <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-overlay filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
     </div>
 
-    <!-- Navigation -->
     <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="javascript:switchPage('home')" class="text-2xl font-bold tracking-tighter hover:text-primary transition-colors">
-                My<span class="text-primary">Portfolio</span>
+                Emir Can<span class="text-primary">.</span>
             </a>
             
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
+            <div class="hidden md:flex space-x-8 text-sm font-medium items-center">
                 <a href="javascript:switchPage('home')" class="hover:text-primary transition-colors" data-lang="nav_home">Home</a>
-                <a href="javascript:switchPage('social')" class="hover:text-primary transition-colors" data-lang="nav_social">Social Media</a>
-                <a href="javascript:switchPage('web')" class="hover:text-primary transition-colors" data-lang="nav_web">Web</a>
+                <a href="javascript:switchPage('web')" class="hover:text-primary transition-colors" data-lang="nav_web">Projects</a>
+                <a href="javascript:switchPage('social')" class="hover:text-primary transition-colors" data-lang="nav_social">Digital Media</a>
                 <a href="#contact" onclick="switchPage('home')" class="px-4 py-2 bg-primary rounded-full hover:bg-secondary transition-all transform hover:scale-105" data-lang="nav_contact">Contact Me</a>
             </div>
 
@@ -96,14 +90,13 @@
         <div class="md:hidden hidden bg-dark absolute w-full border-b border-gray-800" id="mobile-menu">
             <div class="flex flex-col p-6 space-y-4">
                 <a href="javascript:switchPage('home')" class="hover:text-primary" data-lang="nav_home">Home</a>
-                <a href="javascript:switchPage('social')" class="hover:text-primary" data-lang="nav_social">Social Media</a>
-                <a href="javascript:switchPage('web')" class="hover:text-primary" data-lang="nav_web">Web</a>
+                <a href="javascript:switchPage('web')" class="hover:text-primary" data-lang="nav_web">Projects</a>
+                <a href="javascript:switchPage('social')" class="hover:text-primary" data-lang="nav_social">Digital Media</a>
                 <a href="#contact" class="text-primary" data-lang="nav_contact">Contact Me</a>
             </div>
         </div>
     </nav>
 
-    <!-- LIGHTBOX MODAL (For Instagram, Twitter) -->
     <div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center backdrop-blur-sm">
         <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-4xl hover:text-primary z-[102]"><i class="fas fa-times"></i></button>
         <button onclick="changeSlide(-1)" class="absolute left-4 md:left-10 text-white text-3xl md:text-5xl hover:text-primary z-[102]"><i class="fas fa-chevron-left"></i></button>
@@ -117,134 +110,189 @@
         <button onclick="changeSlide(1)" class="absolute right-4 md:right-10 text-white text-3xl md:text-5xl hover:text-primary z-[102]"><i class="fas fa-chevron-right"></i></button>
     </div>
 
-    <!-- HOME PAGE -->
     <div id="home-page" class="page-section active">
-        <!-- Hero Section -->
-        <section id="home" class="relative z-10 h-screen flex items-center justify-center px-6">
-            <div class="text-center max-w-3xl">
-                <p class="text-primary font-medium mb-4" data-aos="fade-down" data-lang="hero_greeting">Hello, I'm</p>
-                <h1 class="text-5xl md:text-7xl font-bold mb-6" data-aos="zoom-in" data-aos-delay="100">
+        <section id="home" class="relative z-10 min-h-screen flex items-center justify-center px-6 pt-20">
+            <div class="text-center max-w-4xl">
+                <p class="text-primary font-medium mb-4 tracking-widest uppercase text-sm" data-aos="fade-down" data-lang="hero_greeting">Multidisciplinary Solopreneur</p>
+                <h1 class="text-5xl md:text-8xl font-bold mb-6 tracking-tight" data-aos="zoom-in" data-aos-delay="100">
                     Emir Can <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Özer</span>
                 </h1>
-                <h2 class="text-2xl md:text-4xl text-gray-400 mb-8 h-12" data-aos="fade-up" data-aos-delay="200">
-                    <span data-lang="hero_iam">I build</span> <span id="typewriter" class="text-white"></span><span class="cursor-blink">|</span>
+                <h2 class="text-2xl md:text-4xl text-gray-400 mb-12 h-12" data-aos="fade-up" data-aos-delay="200">
+                    <span data-lang="hero_iam">I build</span> <span id="typewriter" class="text-white font-semibold"></span><span class="cursor-blink text-primary">|</span>
                 </h2>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8" data-aos="fade-up" data-aos-delay="300">
+                    <button onclick="switchPage('web')" class="px-8 py-4 bg-white text-dark rounded-full font-bold hover:bg-gray-200 transition-all transform hover:scale-105 w-full sm:w-auto" data-lang="btn_work">Projelerimi Gör</button>
+                    <a href="#about" class="px-8 py-4 glass rounded-full font-bold hover:bg-white/10 transition-all w-full sm:w-auto" data-lang="btn_about">Hakkımda</a>
+                </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <section id="about" class="relative z-10 py-24 px-6">
+            <div class="max-w-5xl mx-auto glass p-10 md:p-16 rounded-3xl" data-aos="fade-up">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary" data-lang="about_title">Hakkımda</h2>
+                        <div class="space-y-4 text-gray-300 leading-relaxed text-lg">
+                            <p data-lang="about_p1">Yazılım, dijital medya ve ticareti Stoacı bir felsefeyle harmanlayan çok yönlü bir solopreneur'üm. Kod dünyasında projeler inşa ederken, boks ve vücut geliştirme ile fiziksel disiplinimi koruyorum.</p>
+                            <p data-lang="about_p2">Amacım sadece kod yazmak değil; algoritmaları anlayarak milyonlara ulaşan içerikler üretmek, Womiy gibi ürünler geliştirmek ve pazarlık asistanlığı gibi kârlı iş modelleri kurgulamak.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass p-6 rounded-2xl text-center hover:bg-primary/20 transition-colors">
+                            <i class="fas fa-code text-3xl text-primary mb-3"></i>
+                            <h3 class="font-bold">Software</h3>
+                        </div>
+                        <div class="glass p-6 rounded-2xl text-center hover:bg-pink-500/20 transition-colors">
+                            <i class="fas fa-chart-line text-3xl text-pink-500 mb-3"></i>
+                            <h3 class="font-bold">Growth</h3>
+                        </div>
+                        <div class="glass p-6 rounded-2xl text-center hover:bg-green-500/20 transition-colors">
+                            <i class="fas fa-handshake text-3xl text-green-500 mb-3"></i>
+                            <h3 class="font-bold">Commerce</h3>
+                        </div>
+                        <div class="glass p-6 rounded-2xl text-center hover:bg-orange-500/20 transition-colors">
+                            <i class="fas fa-dumbbell text-3xl text-orange-500 mb-3"></i>
+                            <h3 class="font-bold">Discipline</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="contact" class="relative z-10 py-24 px-6 bg-dark/50">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl font-bold mb-8" data-aos="zoom-in" data-lang="contact_title">Let's Work Together</h2>
-                <form class="max-w-md mx-auto space-y-4" data-aos="fade-up">
-                    <input type="text" data-lang-placeholder="ph_name" placeholder="Name" class="w-full p-4 glass rounded-lg focus:outline-none focus:border-primary border border-transparent">
-                    <input type="email" data-lang-placeholder="ph_email" placeholder="Email" class="w-full p-4 glass rounded-lg focus:outline-none focus:border-primary border border-transparent">
-                    <textarea rows="4" data-lang-placeholder="ph_message" placeholder="Message" class="w-full p-4 glass rounded-lg focus:outline-none focus:border-primary border border-transparent"></textarea>
-                    <button class="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-lg font-bold hover:opacity-90" data-lang="btn_send">Send Message</button>
+                <h2 class="text-4xl font-bold mb-4" data-aos="zoom-in" data-lang="contact_title">Birlikte Çalışalım</h2>
+                <p class="text-gray-400 mb-8" data-aos="fade-up" data-lang="contact_desc">Projeler, danışmanlık veya işbirlikleri için benimle iletişime geçin.</p>
+                <form class="max-w-md mx-auto space-y-4" data-aos="fade-up" data-aos-delay="100">
+                    <input type="text" data-lang-placeholder="ph_name" placeholder="Name" class="w-full p-4 glass rounded-xl focus:outline-none focus:border-primary border border-transparent transition-colors">
+                    <input type="email" data-lang-placeholder="ph_email" placeholder="Email" class="w-full p-4 glass rounded-xl focus:outline-none focus:border-primary border border-transparent transition-colors">
+                    <textarea rows="4" data-lang-placeholder="ph_message" placeholder="Message" class="w-full p-4 glass rounded-xl focus:outline-none focus:border-primary border border-transparent transition-colors"></textarea>
+                    <button class="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-bold hover:opacity-90 transition-opacity" data-lang="btn_send">Mesaj Gönder</button>
                 </form>
             </div>
         </section>
     </div>
 
-    <!-- SOCIAL MEDIA HUB PAGE -->
-    <div id="social-page" class="page-section min-h-screen pt-32 px-6 pb-12">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-down" data-lang="social_title">Social Media Hub</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div onclick="openSocialGallery('instagram')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center group hover:scale-105 transition-transform"><i class="fab fa-instagram text-5xl mb-4 text-pink-500"></i><h3 class="font-bold">Instagram</h3><p class="text-gray-400 text-sm" data-lang="click_view">View gallery</p></div>
-                <div onclick="openSocialGallery('twitter')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center group hover:scale-105 transition-transform"><i class="fab fa-twitter text-5xl mb-4 text-blue-400"></i><h3 class="font-bold">Twitter / X</h3><p class="text-gray-400 text-sm" data-lang="click_view">View gallery</p></div>
-                <div onclick="openSocialGallery('tiktok')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center group hover:scale-105 transition-transform"><i class="fab fa-tiktok text-5xl mb-4 text-white"></i><h3 class="font-bold">TikTok</h3><p class="text-gray-400 text-sm" data-lang="click_special">View options</p></div>
-                <div onclick="openSocialGallery('youtube')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center group hover:scale-105 transition-transform"><i class="fab fa-youtube text-5xl mb-4 text-red-600"></i><h3 class="font-bold">YouTube</h3><p class="text-gray-400 text-sm" data-lang="click_grid">View videos</p></div>
-                <div onclick="openSocialGallery('github')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center group hover:scale-105 transition-transform"><i class="fab fa-github text-5xl mb-4 text-white"></i><h3 class="font-bold">GitHub</h3><p class="text-gray-400 text-sm" data-lang="click_link">View profile</p></div>
-                <div onclick="openSocialGallery('linkedin')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center group hover:scale-105 transition-transform"><i class="fab fa-linkedin text-5xl mb-4 text-blue-600"></i><h3 class="font-bold">LinkedIn</h3><p class="text-gray-400 text-sm" data-lang="click_link">View profile</p></div>
-                <div onclick="openSocialGallery('discord')" class="cursor-pointer glass p-8 rounded-2xl flex flex-col items-center group hover:scale-105 transition-transform"><i class="fab fa-discord text-5xl mb-4 text-indigo-500"></i><h3 class="font-bold">Discord</h3><p class="text-gray-400 text-sm" data-lang="click_link">View profile</p></div>
+    <div id="web-page" class="page-section min-h-screen pt-32 px-6 pb-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12" data-aos="fade-down">
+                <h2 class="text-5xl font-bold mb-4" data-lang="web_title">Projeler & Girişimler</h2>
+                <p class="text-gray-400 text-lg" data-lang="web_subtitle">Yazılım yeteneklerimi ve ticari vizyonumu birleştirdiğim işler.</p>
             </div>
-            <div class="text-center mt-12"><button onclick="switchPage('home')" class="px-6 py-2 border border-white/20 rounded-full hover:bg-white/10" data-lang="btn_back">Back to Home</button></div>
+            <div id="web-projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            <div class="text-center mt-16"><button onclick="switchPage('home')" class="px-8 py-3 glass rounded-full hover:bg-white/10 transition-colors" data-lang="btn_back">Anasayfaya Dön</button></div>
         </div>
     </div>
 
-    <!-- DYNAMIC SOCIAL CONTENT PAGE (For Galleries, Links, Grids) -->
+    <div id="social-page" class="page-section min-h-screen pt-32 px-6 pb-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12" data-aos="fade-down">
+                <h2 class="text-5xl font-bold mb-4" data-lang="social_title">Dijital Medya & Büyüme</h2>
+                <p class="text-gray-400 text-lg" data-lang="social_subtitle">Algoritma yönetimi, viral içerik üretimi ve çoklu kanal stratejileri.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div onclick="openSocialGallery('youtube')" class="cursor-pointer glass p-8 rounded-3xl flex flex-col items-center group hover:scale-105 transition-transform border-t-4 border-t-red-600">
+                    <i class="fab fa-youtube text-6xl mb-4 text-red-600"></i>
+                    <h3 class="font-bold text-xl mb-2">YouTube Ağı</h3>
+                    <p class="text-gray-400 text-sm text-center" data-lang="click_grid">Kanal yönetimi ve analizleri</p>
+                </div>
+                <div onclick="openSocialGallery('instagram')" class="cursor-pointer glass p-8 rounded-3xl flex flex-col items-center group hover:scale-105 transition-transform border-t-4 border-t-pink-500">
+                    <i class="fab fa-instagram text-6xl mb-4 text-pink-500"></i>
+                    <h3 class="font-bold text-xl mb-2">Viral Reels</h3>
+                    <p class="text-gray-400 text-sm text-center" data-lang="click_view">İçerik stratejileri ve sonuçlar</p>
+                </div>
+                <div onclick="openSocialGallery('github')" class="cursor-pointer glass p-8 rounded-3xl flex flex-col items-center group hover:scale-105 transition-transform border-t-4 border-t-white">
+                    <i class="fab fa-github text-6xl mb-4 text-white"></i>
+                    <h3 class="font-bold text-xl mb-2">GitHub Kod Arşivi</h3>
+                    <p class="text-gray-400 text-sm text-center" data-lang="click_link">Açık kaynak projelerim</p>
+                </div>
+            </div>
+            <div class="text-center mt-16"><button onclick="switchPage('home')" class="px-8 py-3 glass rounded-full hover:bg-white/10 transition-colors" data-lang="btn_back">Anasayfaya Dön</button></div>
+        </div>
+    </div>
+
     <div id="social-detail-page" class="page-section min-h-screen pt-32 px-6 pb-12">
         <div class="max-w-7xl mx-auto">
             <h2 id="gallery-title" class="text-4xl font-bold mb-4 text-center">Platform</h2>
             <p id="gallery-subtitle" class="text-center text-gray-400 mb-12">Content</p>
-            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center"></div>
-            <div class="text-center mt-12"><button onclick="switchPage('social')" class="px-6 py-2 border border-white/20 rounded-full hover:bg-white/10" data-lang="btn_back_social">Back to Social Hub</button></div>
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center"></div>
+            <div class="text-center mt-16"><button onclick="switchPage('social')" class="px-8 py-3 glass rounded-full hover:bg-white/10 transition-colors" data-lang="btn_back_social">Medyaya Dön</button></div>
         </div>
     </div>
 
-    <!-- WEB PROJECTS PAGE -->
-    <div id="web-page" class="page-section min-h-screen pt-32 px-6 pb-12">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-down" data-lang="web_title">Web Projects</h2>
-            <div id="web-projects-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
-            <div class="text-center mt-12"><button onclick="switchPage('home')" class="px-6 py-2 border border-white/20 rounded-full hover:bg-white/10" data-lang="btn_back">Back to Home</button></div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 800, once: true });
 
         /* ----------------------------------------------------
-           USER CONFIGURATION (LINKLERİ VE VERİLERİ BURADAN DÜZENLE)
+           USER CONFIGURATION (EMİR CAN ÖZER PORTFOLIO DATA)
            ---------------------------------------------------- */
         const socialLinks = {
-            github: "https://github.com/emircanozer",
-            linkedin: "https://linkedin.com/in/emircanozer",
-            discord: "https://discord.gg/yourinvite",
-            tiktok: "https://tiktok.com/@emircanozer"
+            github: "https://github.com/yourusername",
+            instagram: "https://instagram.com/yourusername",
+            youtube: "https://youtube.com/yourchannel"
         };
         
-        const webProjectsData = Array.from({ length: 9 }, (_, i) => ({
-            title: { en: `Modern Business Website ${i+1}`, tr: `Modern Kurumsal Site ${i+1}` },
-            desc: { en: 'A sleek, responsive site for a corporate client.', tr: 'Kurumsal bir müşteri için şık, duyarlı site.'},
-            img: `https://picsum.photos/800/600?random=${i+1}`, // Rastgele resim
-            link: '#' // Proje linkini buraya ekle
-        }));
+        // Emir'in vizyonuna uygun projeler
+        const webProjectsData = [
+            { 
+                title: { en: "Womiy App", tr: "Womiy Uygulaması" }, 
+                desc: { en: "A comprehensive mobile application project focusing on engagement and in-app commerce.", tr: "Kullanıcı etkileşimi ve uygulama içi satış potansiyeli yüksek, uçtan uca geliştirdiğim mobil uygulama projesi." }, 
+                img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800", 
+                link: "#" 
+            },
+            { 
+                title: { en: "Negotiation Assistant", tr: "Pazarlık Asistanı" }, 
+                desc: { en: "A unique service and business model assisting users in used-car negotiations and inspections.", tr: "İkinci el araç pazarında, alıcılar adına mekanik ekspertiz ve fiyat pazarlığı yürüten profesyonel danışmanlık konsepti." }, 
+                img: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&q=80&w=800", 
+                link: "#" 
+            },
+            { 
+                title: { en: "Viral Prototypes", tr: "Viral Prototip Araçları" }, 
+                desc: { en: "Fast, lightweight applications designed specifically for algorithmic growth and quick user acquisition.", tr: "Sosyal medya algoritmalarına uygun, hızlı yayılma ve yüksek kullanıcı edinme hedefiyle yazılmış mini araçlar." }, 
+                img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800", 
+                link: "#" 
+            }
+        ];
 
-        const youtubeData = Array.from({ length: 12 }, (_, i) => ({
-            title: { en: `Tech Tutorial Vol. ${i+1}`, tr: `Teknoloji Eğitimi Vol. ${i+1}` },
-            desc: { en: 'Explaining a complex topic in a simple way.', tr: 'Karmaşık bir konuyu basitçe anlatıyorum.'},
-            img: `https://picsum.photos/800/600?random=${i+10}`, // Rastgele resim
-            link: '#' // YouTube video linkini buraya ekle
-        }));
+        const youtubeData = [
+            { title: { en: "Channel Growth Case Study", tr: "Kanal Büyütme Analizi" }, desc: { en: "How I manage multiple channels simultaneously.", tr: "Birden fazla kanalı aynı anda nasıl yönetiyorum ve büyütüyorum." }, img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800", link: "#" },
+            { title: { en: "Content Strategy", tr: "İçerik Stratejisi" }, desc: { en: "Planning 4-5 different niches.", tr: "4-5 farklı niş için içerik planlaması ve prodüksiyon süreci." }, img: "https://images.unsplash.com/photo-1516280440503-66f8e1fa16ed?auto=format&fit=crop&q=80&w=800", link: "#" }
+        ];
 
         const galleryData = {
-            instagram: Array.from({ length: 6 }, (_, i) => ({ img: `https://picsum.photos/800/600?random=${i+20}`, title: 'Instagram Post', desc: `Post description ${i+1}` })),
-            twitter: Array.from({ length: 6 }, (_, i) => ({ img: `https://picsum.photos/800/600?random=${i+30}`, title: 'Twitter Post', desc: `Post description ${i+1}` })),
-        };
-        
-        const tiktokDescription = {
-            en: "I create short, educational content about coding here. Follow for daily tips!",
-            tr: "Burada yazılım hakkında kısa, eğitici içerikler üretiyorum. İpuçları için takip et!"
+            instagram: [
+                { img: "https://images.unsplash.com/photo-1611262588024-d12430b98920?auto=format&fit=crop&q=80&w=800", title: 'Viral Reel Vaka Analizi', desc: 'Milyonluk izlenmeye ulaşan kurgu tekniği' },
+                { img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800", title: 'Marka & Influencer', desc: 'Etkileşim odaklı içerik yönetimi' }
+            ]
         };
         /* ---------------------------------------------------- */
 
-
         const translations = {
             en: {
-                nav_home: "Home", nav_social: "Social Media", nav_web: "Web", nav_contact: "Contact Me",
-                hero_greeting: "Hello, I'm", hero_iam: "I build", btn_work: "View Work", btn_contact: "Contact Me",
-                contact_title: "Let's Work Together", btn_send: "Send Message", ph_name: "Name", ph_email: "Email", ph_message: "Message",
-                social_title: "Social Media Hub", web_title: "Web Projects", btn_back: "Back to Home",
-                click_view: "View gallery", click_grid: "View videos", click_link: "View profile", click_special: "View options",
-                gallery_subtitle: "Explore content", youtube_title: "My YouTube Videos", youtube_subtitle: "Tutorials, vlogs and more.",
-                btn_back_social: "Back to Social Hub", offer_title: "What I Offer You",
-                link_project: "Go to Project", link_video: "Go to Video",
-                typewriter_words: ["Websites.", "Apps.", "Experiences.", "Solutions."]
+                nav_home: "Home", nav_social: "Digital Media", nav_web: "Projects", nav_contact: "Contact",
+                hero_greeting: "Multidisciplinary Solopreneur", hero_iam: "I build", btn_work: "View My Work", btn_about: "About Me",
+                about_title: "About Me", about_p1: "I am a versatile solopreneur blending software, digital media, and commerce with a Stoic philosophy. While building projects in the coding world, I maintain my physical discipline through boxing and bodybuilding.",
+                about_p2: "My goal isn't just writing code; it's understanding algorithms to create content reaching millions, developing products like Womiy, and architecting profitable business models like the negotiation assistant.",
+                contact_title: "Let's Work Together", contact_desc: "Reach out for projects, consulting, or collaborations.", btn_send: "Send Message", ph_name: "Name", ph_email: "Email", ph_message: "Message",
+                social_title: "Digital Media & Growth", social_subtitle: "Algorithm management, viral content creation, and multi-channel strategies.", web_title: "Projects & Ventures", web_subtitle: "Where software skills meet commercial vision.", btn_back: "Back to Home",
+                click_view: "View Case Studies", click_grid: "Channel Analytics", click_link: "Open Source Code",
+                gallery_subtitle: "Visualizing the strategy", youtube_title: "YouTube Network", youtube_subtitle: "Multi-channel management and production.",
+                btn_back_social: "Back to Media", link_project: "View Details", link_video: "Watch Case Study",
+                typewriter_words: ["Apps.", "Viral Content.", "Businesses.", "Solutions."]
             },
             tr: {
-                nav_home: "Anasayfa", nav_social: "Sosyal Medya", nav_web: "Web", nav_contact: "İletişim",
-                hero_greeting: "Merhaba, ben", hero_iam: "Geliştirdiğim alanlar:", btn_work: "Çalışmalar", btn_contact: "İletişim",
-                contact_title: "Birlikte Çalışalım", btn_send: "Gönder", ph_name: "İsim", ph_email: "E-posta", ph_message: "Mesajınız",
-                social_title: "Sosyal Medya Hesaplarım", web_title: "Web Projeleri", btn_back: "Anasayfaya Dön",
-                click_view: "Galeriyi görüntüle", click_grid: "Videoları görüntüle", click_link: "Profili görüntüle", click_special: "Seçenekleri görüntüle",
-                gallery_subtitle: "İçeriklerimi keşfet", youtube_title: "YouTube Videolarım", youtube_subtitle: "Eğitimler, vloglar ve daha fazlası.",
-                btn_back_social: "Sosyal Medyaya Dön", offer_title: "Size Şunları Sunuyorum",
-                link_project: "Projeye Git", link_video: "Videoya Git",
-                typewriter_words: ["Web Siteleri.", "Uygulamalar.", "Deneyimler.", "Çözümler."]
+                nav_home: "Anasayfa", nav_social: "Dijital Medya", nav_web: "Projeler", nav_contact: "İletişim",
+                hero_greeting: "Çok Disiplinli Solopreneur", hero_iam: "Geliştiriyorum:", btn_work: "Projelerimi Gör", btn_about: "Hakkımda",
+                about_title: "Hakkımda", about_p1: "Yazılım, dijital medya ve ticareti Stoacı bir felsefeyle harmanlayan çok yönlü bir solopreneur'üm. Kod dünyasında projeler inşa ederken, boks ve vücut geliştirme ile fiziksel disiplinimi koruyorum.",
+                about_p2: "Amacım sadece kod yazmak değil; algoritmaları anlayarak milyonlara ulaşan içerikler üretmek, Womiy gibi ürünler geliştirmek ve pazarlık asistanlığı gibi kârlı iş modelleri kurgulamak.",
+                contact_title: "Birlikte Çalışalım", contact_desc: "Projeler, danışmanlık veya işbirlikleri için iletişime geçin.", btn_send: "Mesaj Gönder", ph_name: "İsim", ph_email: "E-posta", ph_message: "Mesajınız",
+                social_title: "Dijital Medya & Büyüme", social_subtitle: "Algoritma yönetimi, viral içerik üretimi ve çoklu kanal stratejileri.", web_title: "Projeler & Girişimler", web_subtitle: "Yazılım yeteneklerimi ve ticari vizyonumu birleştirdiğim işler.", btn_back: "Anasayfaya Dön",
+                click_view: "Vaka analizleri", click_grid: "Kanal ve analizler", click_link: "Açık kaynak projeler",
+                gallery_subtitle: "Stratejileri inceleyin", youtube_title: "YouTube Ağı", youtube_subtitle: "Çoklu kanal yönetimi ve içerik stratejisi.",
+                btn_back_social: "Medyaya Dön", link_project: "Detayları İncele", link_video: "Analizi İzle",
+                typewriter_words: ["Uygulamalar.", "Viral İçerikler.", "İş Modelleri.", "Çözümler."]
             }
         };
 
@@ -252,7 +300,7 @@
         const lang = userLang.startsWith('tr') ? 'tr' : 'en';
         const t = translations[lang];
 
-        document.querySelectorAll('[data-lang]').forEach(el => el.textContent = t[el.getAttribute('data-lang')]);
+        document.querySelectorAll('[data-lang]').forEach(el => el.innerHTML = t[el.getAttribute('data-lang')]);
         document.querySelectorAll('[data-lang-placeholder]').forEach(el => el.placeholder = t[el.getAttribute('data-lang-placeholder')]);
 
         let currentGalleryImages = [];
@@ -263,60 +311,46 @@
             const title = document.getElementById('gallery-title');
             const subtitle = document.getElementById('gallery-subtitle');
             
-            title.textContent = platform.charAt(0).toUpperCase() + platform.slice(1);
+            title.textContent = platform === 'youtube' ? t.youtube_title : (platform === 'github' ? 'GitHub' : 'Instagram Reels');
             grid.innerHTML = '';
             
-            if (platform === 'tiktok') {
-                subtitle.style.display = 'none';
-                grid.className = "grid grid-cols-1 md:grid-cols-2 gap-6 justify-center max-w-4xl mx-auto";
-                grid.innerHTML = `
-                    <a href="${socialLinks.tiktok}" target="_blank" class="glass p-12 rounded-2xl flex flex-col items-center justify-center group hover:scale-105 transition-transform text-center h-64">
-                        <i class="fab fa-tiktok text-6xl mb-4 text-white group-hover:text-pink-500"></i>
-                        <h3 class="text-2xl font-bold">TikTok Profilim</h3>
-                        <p class="text-gray-400 mt-2">${t.click_link} &rarr;</p>
-                    </a>
-                    <div class="glass p-8 rounded-2xl flex flex-col justify-center h-64">
-                        <h3 class="text-xl font-bold mb-4 text-primary">${t.offer_title}</h3>
-                        <p class="text-gray-300">${tiktokDescription[lang]}</p>
-                    </div>`;
-            } else if (['github', 'linkedin', 'discord'].includes(platform)) {
+            if (platform === 'github') {
                 subtitle.style.display = 'none';
                 grid.className = "flex justify-center items-center";
-                const linkUrl = socialLinks[platform] || "#";
-                let iconClass = `fab fa-${platform}`;
-                let colorClass = platform === 'discord' ? 'text-indigo-500' : (platform === 'linkedin' ? 'text-blue-600' : 'text-white');
                 grid.innerHTML = `
-                    <a href="${linkUrl}" target="_blank" class="glass w-full max-w-md p-16 rounded-2xl flex flex-col items-center group hover:scale-105 transition-transform text-center">
-                        <i class="${iconClass} text-7xl mb-6 ${colorClass} group-hover:text-white"></i>
-                        <h3 class="text-2xl font-bold">Go to ${platform.charAt(0).toUpperCase() + platform.slice(1)}</h3>
+                    <a href="${socialLinks.github}" target="_blank" class="glass w-full max-w-md p-16 rounded-3xl flex flex-col items-center group hover:scale-105 transition-transform text-center">
+                        <i class="fab fa-github text-7xl mb-6 text-white group-hover:text-primary transition-colors"></i>
+                        <h3 class="text-2xl font-bold">GitHub Profilime Git</h3>
+                        <p class="text-gray-400 mt-2">Tüm repoları ve açık kaynak kodları incele.</p>
                     </a>`;
             } else if (platform === 'youtube') {
-                title.textContent = t.youtube_title;
                 subtitle.textContent = t.youtube_subtitle;
                 subtitle.style.display = 'block';
-                grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6";
+                grid.className = "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto";
                 youtubeData.forEach(item => {
                     grid.innerHTML += `
-                        <a href="${item.link}" target="_blank" class="glass rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300 block">
-                            <div class="h-48 bg-gray-800 relative overflow-hidden"><img src="${item.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
+                        <a href="${item.link}" target="_blank" class="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300 block">
+                            <div class="h-56 bg-gray-800 relative overflow-hidden"><img src="${item.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
                             <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">${item.title[lang]}</h3>
+                                <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">${item.title[lang]}</h3>
                                 <p class="text-gray-400 text-sm mb-4">${item.desc[lang]}</p>
-                                <span class="text-primary font-bold text-sm">${t.link_video} &rarr;</span>
+                                <span class="text-primary font-bold text-sm flex items-center gap-2">${t.link_video} <i class="fas fa-arrow-right"></i></span>
                             </div>
                         </a>`;
                 });
-            } else { // Gallery platforms
+            } else { 
                 subtitle.textContent = t.gallery_subtitle;
                 subtitle.style.display = 'block';
-                grid.className = "grid grid-cols-1 md:grid-cols-3 gap-6";
+                grid.className = "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto";
                 currentGalleryImages = galleryData[platform] || [];
                 currentGalleryImages.forEach((item, index) => {
                     grid.innerHTML += `
-                        <div onclick="openLightbox(${index})" class="glass rounded-xl overflow-hidden group cursor-pointer hover:scale-105 transition-transform">
-                            <div class="h-48 bg-gray-800 relative overflow-hidden">
-                                <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center"><i class="fas fa-search-plus text-white text-3xl"></i></div>
+                        <div onclick="openLightbox(${index})" class="glass rounded-2xl overflow-hidden group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
+                            <div class="h-64 bg-gray-800 relative overflow-hidden">
+                                <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-dark/90 to-transparent opacity-0 group-hover:opacity-100 flex items-end p-6 transition-opacity">
+                                    <i class="fas fa-expand text-white text-2xl mb-2"></i>
+                                </div>
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-bold mb-2">${item.title}</h3>
@@ -334,12 +368,12 @@
             grid.innerHTML = '';
             webProjectsData.forEach(item => {
                 grid.innerHTML += `
-                    <a href="${item.link}" target="_blank" class="glass rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300 block">
-                        <div class="h-48 bg-gray-800 relative overflow-hidden"><img src="${item.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">${item.title[lang]}</h3>
-                            <p class="text-gray-400 text-sm mb-4">${item.desc[lang]}</p>
-                            <span class="text-primary font-bold text-sm">${t.link_project} &rarr;</span>
+                    <a href="${item.link}" target="_blank" class="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300 block flex flex-col h-full">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden"><img src="${item.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">${item.title[lang]}</h3>
+                            <p class="text-gray-400 text-base mb-6 flex-grow">${item.desc[lang]}</p>
+                            <span class="inline-flex items-center gap-2 text-white font-bold bg-white/10 px-4 py-2 rounded-lg w-fit group-hover:bg-primary transition-colors">${t.link_project} <i class="fas fa-arrow-right"></i></span>
                         </div>
                     </a>`;
             });
@@ -375,7 +409,7 @@
             const w = words[i]; const c = h.textContent;
             if (!this.isDeleting && c !== w) h.textContent = w.substring(0, c.length + 1);
             else if (this.isDeleting && c !== "") h.textContent = w.substring(0, c.length - 1);
-            let spd = 100; if (this.isDeleting) spd /= 2;
+            let spd = 80; if (this.isDeleting) spd /= 2;
             if (!this.isDeleting && c === w) { spd = 2000; this.isDeleting = true; }
             else if (this.isDeleting && c === "") { this.isDeleting = false; i = (i + 1) % words.length; spd = 500; }
             timer = setTimeout(typeWriter, spd);
@@ -388,6 +422,7 @@
         document.getElementById('menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('shadow-lg', window.scrollY > 50);
+            document.getElementById('navbar').classList.toggle('bg-dark/80', window.scrollY > 50);
         });
     </script>
 </body>
