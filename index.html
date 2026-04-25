@@ -46,8 +46,8 @@
         .cursor-blink { animation: blink 1s step-end infinite; }
         @keyframes blink { 50% { opacity: 0; } }
         
-        .page-section { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
-        .page-section.active { display: block; opacity: 1; }
+        /* Sayfa geçişleri artık tamamen Tailwind ile kontrol ediliyor */
+        /* Eski .page-section kodları Tailwind çakışmasını önlemek için silindi */
         
         /* Toggle Checkbox Styling for Demo */
         .toggle-checkbox:checked { right: 0; border-color: #68D391; }
@@ -74,8 +74,8 @@
         </div>
     </nav>
 
-    <div id="home-page" class="page-section active relative z-10 pt-24 px-6 pb-12 min-h-screen flex items-center justify-center">
-        <div class="text-center max-w-6xl w-full mx-auto flex flex-col items-center">
+    <div id="home-page" class="page-section transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12 opacity-100">
+        <div class="text-center max-w-6xl w-full mx-auto my-auto flex flex-col items-center">
             <p class="text-primary font-medium mb-4 tracking-widest uppercase text-sm" data-aos="fade-down">Multidisciplinary Solopreneur</p>
             <h1 class="text-5xl md:text-8xl font-bold mb-6 tracking-tight" data-aos="zoom-in">
                 Emir Can <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Özer</span>
@@ -90,8 +90,8 @@
         </div>
     </div>
 
-    <div id="web-page" class="page-section relative z-10 min-h-screen pt-24 px-6 pb-12">
-        <div class="max-w-6xl w-full mx-auto">
+    <div id="web-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
+        <div class="max-w-6xl w-full mx-auto my-auto">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold mb-2">Mini Projeler & Arayüzler</h2>
                 <p class="text-gray-400">Yazılım ve UI yeteneklerimi sergileyen 12 farklı demo.</p>
@@ -100,19 +100,19 @@
         </div>
     </div>
 
-    <div id="demo-page" class="page-section relative z-10 min-h-screen pt-24 px-6 pb-12">
-        <div class="max-w-6xl w-full mx-auto">
+    <div id="demo-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
+        <div class="max-w-6xl w-full mx-auto my-auto">
             <button onclick="switchPage('web')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Projelere Dön</button>
             <div class="glass p-8 rounded-3xl">
                 <h2 id="demo-title" class="text-3xl font-bold mb-2 text-primary">Demo Başlığı</h2>
                 <p id="demo-desc" class="text-gray-400 mb-8 border-b border-white/10 pb-4">Açıklama</p>
-                <div id="demo-container" class="min-h-[400px] flex items-center justify-center bg-black/20 rounded-xl p-6 border border-white/5"></div>
+                <div id="demo-container" class="min-h-[400px] flex flex-col items-center justify-center bg-black/20 rounded-xl p-6 border border-white/5"></div>
             </div>
         </div>
     </div>
 
-    <div id="social-page" class="page-section relative z-10 min-h-screen pt-24 px-6 pb-12">
-        <div class="max-w-6xl w-full mx-auto text-center">
+    <div id="social-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
+        <div class="max-w-6xl w-full mx-auto my-auto text-center">
             <h2 class="text-4xl font-bold mb-12">Pazarlama & Dijital Medya</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div onclick="openAdsPage('meta')" class="cursor-pointer glass p-10 rounded-3xl group hover:-translate-y-2 transition-all border-t-4 border-blue-600">
@@ -134,16 +134,16 @@
         </div>
     </div>
 
-    <div id="ads-page" class="page-section relative z-10 min-h-screen pt-24 px-6 pb-12">
-        <div class="max-w-6xl w-full mx-auto">
+    <div id="ads-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
+        <div class="max-w-6xl w-full mx-auto my-auto">
             <button onclick="switchPage('social')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Geri Dön</button>
             <h2 id="ads-title" class="text-4xl font-bold mb-8 text-center">Platform</h2>
             <div id="ads-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         </div>
     </div>
 
-    <div id="instagram-page" class="page-section relative z-10 min-h-screen pt-24 px-6 pb-12">
-        <div class="max-w-6xl w-full mx-auto">
+    <div id="instagram-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
+        <div class="max-w-6xl w-full mx-auto my-auto">
             <button onclick="switchPage('social')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Medya Menüsüne Dön</button>
             
             <div class="flex flex-col lg:flex-row gap-8">
@@ -195,12 +195,26 @@
             timer = setTimeout(typeWriter, spd);
         }
 
-        // Sayfa Değiştirme Fonksiyonu
+        // JS Sayfa Değiştirme Fonksiyonu (Tailwind uyumlu hale getirildi)
         function switchPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            // Tüm sayfaları gizle ve opaklığı sıfırla
+            document.querySelectorAll('.page-section').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('opacity-100');
+                el.classList.add('opacity-0');
+            });
+            
             const target = document.getElementById(pageId + '-page');
             if (target) {
-                target.classList.add('active'); 
+                // Hedef sayfayı görünür yap
+                target.classList.remove('hidden');
+                
+                // Fade-in animasyonunun çalışması için milisaniyelik bir gecikme ekliyoruz
+                setTimeout(() => {
+                    target.classList.remove('opacity-0');
+                    target.classList.add('opacity-100');
+                }, 20);
+                
                 window.scrollTo(0, 0);
             }
         }
@@ -209,100 +223,12 @@
            1. 12 ADET MİNİ PROJE VERİSİ VE HTML KODLARI
            ========================================= */
         const projectDemos = [
-            {
-                id: 1, title: "E-Commerce Card", desc: "Ürün listeleme ve sepete ekleme simülasyonu.",
-                html: `
-                <div class="bg-white rounded-xl overflow-hidden text-black w-72 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Spor Giyim</span>
-                        <h3 class="font-bold text-xl mt-1">Koşu Ayakkabısı Pro</h3>
-                        <p class="text-gray-500 text-sm mt-2">Dinamik taban ve nefes alan yapı.</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <span class="font-bold text-2xl">₺1.299</span>
-                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-indigo-700 transition">Sepete Ekle</button>
-                        </div>
-                    </div>
-                </div>`
-            },
-            {
-                id: 2, title: "Hover Animasyonları", desc: "Kullanıcı deneyimini artıran CSS transform efektleri.",
-                html: `
-                <div class="flex gap-6">
-                    <div class="glass w-48 h-48 rounded-xl flex items-center justify-center cursor-pointer hover:-translate-y-4 hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300">
-                        <span class="font-bold">Yukarı Kay</span>
-                    </div>
-                    <div class="glass w-48 h-48 rounded-xl flex items-center justify-center cursor-pointer hover:rotate-12 hover:scale-110 transition-all duration-300">
-                        <span class="font-bold">Dön ve Büyü</span>
-                    </div>
-                </div>`
-            },
-            {
-                id: 3, title: "UI Elements: Toggle", desc: "Sade ve modern aç/kapat anahtarı tasarımı.",
-                html: `
-                <div class="flex flex-col gap-6 items-center bg-gray-900 p-10 rounded-2xl">
-                    <div class="flex items-center justify-between w-64 text-white">
-                        <span class="font-semibold">Karanlık Mod</span>
-                        <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
-                            <input type="checkbox" name="toggle" id="toggle1" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-600 appearance-none cursor-pointer transition-all duration-300 z-10"/>
-                            <label for="toggle1" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-600 cursor-pointer transition-colors duration-300"></label>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between w-64 text-white">
-                        <span class="font-semibold">Bildirimler</span>
-                        <div class="relative inline-block w-12 mr-2 align-middle select-none">
-                            <input type="checkbox" checked id="toggle2" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-all"/>
-                            <label for="toggle2" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-600 cursor-pointer transition-colors"></label>
-                        </div>
-                    </div>
-                </div>`
-            },
-            {
-                id: 4, title: "Fiyatlandırma Tablosu", desc: "SaaS veya hizmet odaklı modern paket gösterimi.",
-                html: `
-                <div class="glass p-8 rounded-2xl w-80 text-center relative overflow-hidden border-t-4 border-primary">
-                    <div class="absolute top-0 right-0 bg-primary text-xs font-bold px-3 py-1 rounded-bl-lg">POPÜLER</div>
-                    <h3 class="text-xl font-bold mb-2">Pro Paket</h3>
-                    <div class="text-4xl font-bold mb-4">₺499<span class="text-sm text-gray-400 font-normal">/ay</span></div>
-                    <ul class="text-left text-sm text-gray-300 space-y-3 mb-6">
-                        <li><i class="fas fa-check text-green-400 mr-2"></i> Sınırsız Erişim</li>
-                        <li><i class="fas fa-check text-green-400 mr-2"></i> Özel Analitik</li>
-                        <li><i class="fas fa-check text-green-400 mr-2"></i> 7/24 Destek</li>
-                    </ul>
-                    <button class="w-full py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200">Hemen Başla</button>
-                </div>`
-            },
-            {
-                id: 5, title: "Profil Kartı", desc: "Sosyal medya veya ekip sayfası için minimalist kart.",
-                html: `
-                <div class="bg-gradient-to-br from-gray-800 to-gray-900 w-72 rounded-2xl overflow-hidden shadow-xl text-center pb-6">
-                    <div class="h-24 bg-gradient-to-r from-primary to-secondary"></div>
-                    <img src="https://ui-avatars.com/api/?name=Emir&background=random" class="w-20 h-20 rounded-full mx-auto -mt-10 border-4 border-gray-900">
-                    <h3 class="font-bold text-xl mt-3">Emir Can</h3>
-                    <p class="text-primary text-sm mb-4">Yazılım Geliştirici</p>
-                    <div class="flex justify-center gap-4 text-gray-400">
-                        <i class="fab fa-twitter hover:text-white cursor-pointer"></i>
-                        <i class="fab fa-github hover:text-white cursor-pointer"></i>
-                        <i class="fab fa-linkedin hover:text-white cursor-pointer"></i>
-                    </div>
-                </div>`
-            },
-            {
-                id: 6, title: "Kredi Kartı UI", desc: "Ödeme adımları için görselleştirilmiş dijital kart.",
-                html: `
-                <div class="w-80 h-48 bg-gradient-to-tr from-indigo-800 to-blue-500 rounded-xl p-6 text-white shadow-2xl relative overflow-hidden">
-                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-                    <div class="flex justify-between items-center mb-6">
-                        <i class="fas fa-microchip text-3xl text-yellow-400"></i>
-                        <i class="fab fa-cc-visa text-4xl"></i>
-                    </div>
-                    <div class="font-mono text-xl tracking-widest mb-2">**** **** **** 1234</div>
-                    <div class="flex justify-between text-sm uppercase text-gray-300">
-                        <span>Emir Can</span>
-                        <span>12/26</span>
-                    </div>
-                </div>`
-            },
+            { id: 1, title: "E-Commerce Card", desc: "Ürün listeleme ve sepete ekleme simülasyonu.", html: `<div class="bg-white rounded-xl overflow-hidden text-black w-72 shadow-2xl"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80" class="w-full h-48 object-cover"><div class="p-4"><span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Spor Giyim</span><h3 class="font-bold text-xl mt-1">Koşu Ayakkabısı Pro</h3><p class="text-gray-500 text-sm mt-2">Dinamik taban ve nefes alan yapı.</p><div class="mt-4 flex items-center justify-between"><span class="font-bold text-2xl">₺1.299</span><button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-indigo-700 transition">Sepete Ekle</button></div></div></div>` },
+            { id: 2, title: "Hover Animasyonları", desc: "Kullanıcı deneyimini artıran CSS transform efektleri.", html: `<div class="flex gap-6"><div class="glass w-48 h-48 rounded-xl flex items-center justify-center cursor-pointer hover:-translate-y-4 hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300"><span class="font-bold">Yukarı Kay</span></div><div class="glass w-48 h-48 rounded-xl flex items-center justify-center cursor-pointer hover:rotate-12 hover:scale-110 transition-all duration-300"><span class="font-bold">Dön ve Büyü</span></div></div>` },
+            { id: 3, title: "UI Elements: Toggle", desc: "Sade ve modern aç/kapat anahtarı tasarımı.", html: `<div class="flex flex-col gap-6 items-center bg-gray-900 p-10 rounded-2xl"><div class="flex items-center justify-between w-64 text-white"><span class="font-semibold">Karanlık Mod</span><div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in"><input type="checkbox" name="toggle" id="toggle1" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-600 appearance-none cursor-pointer transition-all duration-300 z-10"/><label for="toggle1" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-600 cursor-pointer transition-colors duration-300"></label></div></div><div class="flex items-center justify-between w-64 text-white"><span class="font-semibold">Bildirimler</span><div class="relative inline-block w-12 mr-2 align-middle select-none"><input type="checkbox" checked id="toggle2" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-all"/><label for="toggle2" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-600 cursor-pointer transition-colors"></label></div></div></div>` },
+            { id: 4, title: "Fiyatlandırma Tablosu", desc: "SaaS veya hizmet odaklı modern paket gösterimi.", html: `<div class="glass p-8 rounded-2xl w-80 text-center relative overflow-hidden border-t-4 border-primary"><div class="absolute top-0 right-0 bg-primary text-xs font-bold px-3 py-1 rounded-bl-lg">POPÜLER</div><h3 class="text-xl font-bold mb-2">Pro Paket</h3><div class="text-4xl font-bold mb-4">₺499<span class="text-sm text-gray-400 font-normal">/ay</span></div><ul class="text-left text-sm text-gray-300 space-y-3 mb-6"><li><i class="fas fa-check text-green-400 mr-2"></i> Sınırsız Erişim</li><li><i class="fas fa-check text-green-400 mr-2"></i> Özel Analitik</li><li><i class="fas fa-check text-green-400 mr-2"></i> 7/24 Destek</li></ul><button class="w-full py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200">Hemen Başla</button></div>` },
+            { id: 5, title: "Profil Kartı", desc: "Sosyal medya veya ekip sayfası için minimalist kart.", html: `<div class="bg-gradient-to-br from-gray-800 to-gray-900 w-72 rounded-2xl overflow-hidden shadow-xl text-center pb-6"><div class="h-24 bg-gradient-to-r from-primary to-secondary"></div><img src="https://ui-avatars.com/api/?name=Emir&background=random" class="w-20 h-20 rounded-full mx-auto -mt-10 border-4 border-gray-900"><h3 class="font-bold text-xl mt-3">Emir Can</h3><p class="text-primary text-sm mb-4">Yazılım Geliştirici</p><div class="flex justify-center gap-4 text-gray-400"><i class="fab fa-twitter hover:text-white cursor-pointer"></i><i class="fab fa-github hover:text-white cursor-pointer"></i><i class="fab fa-linkedin hover:text-white cursor-pointer"></i></div></div>` },
+            { id: 6, title: "Kredi Kartı UI", desc: "Ödeme adımları için görselleştirilmiş dijital kart.", html: `<div class="w-80 h-48 bg-gradient-to-tr from-indigo-800 to-blue-500 rounded-xl p-6 text-white shadow-2xl relative overflow-hidden"><div class="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div><div class="flex justify-between items-center mb-6"><i class="fas fa-microchip text-3xl text-yellow-400"></i><i class="fab fa-cc-visa text-4xl"></i></div><div class="font-mono text-xl tracking-widest mb-2">**** **** **** 1234</div><div class="flex justify-between text-sm uppercase text-gray-300"><span>Emir Can</span><span>12/26</span></div></div>` },
             { id: 7, title: "İstatistik Widget", desc: "Yönetim panelleri için data gösterim modülü.", html: `<div class="glass p-6 rounded-xl w-64"><div class="flex justify-between mb-4"><span class="text-gray-400">Toplam Satış</span><i class="fas fa-chart-pie text-secondary"></i></div><div class="text-3xl font-bold">₺12,450</div><div class="text-green-400 text-sm mt-2"><i class="fas fa-arrow-up"></i> +14.5% bu hafta</div></div>`},
             { id: 8, title: "Login Formu", desc: "Cam efekti (glassmorphism) ile şık giriş ekranı.", html: `<div class="glass p-8 rounded-2xl w-80"><h3 class="text-2xl font-bold mb-6 text-center">Giriş Yap</h3><input type="text" placeholder="E-posta" class="w-full bg-black/30 p-3 rounded mb-4 text-sm border border-white/10 outline-none"><input type="password" placeholder="Şifre" class="w-full bg-black/30 p-3 rounded mb-6 text-sm border border-white/10 outline-none"><button class="w-full bg-primary py-3 rounded font-bold hover:opacity-90">Giriş</button></div>`},
             { id: 9, title: "Müzik Player", desc: "Uygulama içi medya oynatıcı UI tasarımı.", html: `<div class="bg-gray-800 p-6 rounded-3xl w-72 flex flex-col items-center shadow-2xl"><img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=200&q=80" class="w-48 h-48 rounded-full mb-6 shadow-lg object-cover"><h3 class="font-bold text-lg">Gece Sürüşü</h3><p class="text-gray-400 text-sm mb-6">Emir's Playlist</p><div class="flex gap-6 text-2xl"><i class="fas fa-backward text-gray-400 hover:text-white cursor-pointer"></i><i class="fas fa-play-circle text-primary text-3xl cursor-pointer"></i><i class="fas fa-forward text-gray-400 hover:text-white cursor-pointer"></i></div></div>`},
