@@ -187,8 +187,8 @@
 
     <div id="ads-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
         <div class="max-w-6xl w-full mx-auto my-auto">
-            <button onclick="switchPage('social')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Geri Dön</button>
-            <h2 id="ads-title" class="text-4xl font-bold mb-8 text-center">Platform</h2>
+            <button onclick="switchPage('social')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Medya Menüsüne Dön</button>
+            <h2 id="ads-title" class="text-4xl font-bold mb-12 text-center">Platform</h2>
             <div id="ads-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         </div>
     </div>
@@ -290,19 +290,38 @@
             }
         }
 
+        // Yeni Eklenen Etkileyici Hizmet Tanımları
+        const adsData = {
+            meta: [
+                { title: "AI Lookalike Hedefleme", desc: "Mevcut alıcılarınıza benzeyen, satın alma potansiyeli en yüksek yeni kitleleri yapay zeka ile buluyoruz.", icon: "fa-robot" },
+                { title: "High-Ticket Lead Gen", desc: "Araç veya gayrimenkul gibi yüksek bütçeli satışlarınız için nitelikli ve filtrelenmiş müşteri formları topluyoruz.", icon: "fa-funnel-dollar" },
+                { title: "Agresif Retargeting", desc: "Sitenizi terk eden kullanıcıları, karşı konulamaz tekliflerle dijital ayak izlerinden takip edip ikna ediyoruz.", icon: "fa-bullseye" },
+                { title: "Dinamik Kreatifler (DCO)", desc: "Kullanıcı davranışına göre otomatik şekillenen görsel ve metin kombinasyonlarıyla maliyetleri düşürüyoruz.", icon: "fa-layer-group" }
+            ],
+            google: [
+                { title: "Performance Max Büyüsü", desc: "Tek kampanya ile Google Arama, YouTube, Gmail ve Haritalar'daki en kârlı müşterilere aynı anda ulaşıyoruz.", icon: "fa-bolt" },
+                { title: "Niyet Odaklı Search", desc: "Sadece hizmetinizi arayan, cüzdanı elinde hazır bekleyen (High-Intent) kullanıcıları sitenize çekiyoruz.", icon: "fa-search-dollar" },
+                { title: "Rakip Trafiği Avcılığı", desc: "Sektördeki en büyük rakiplerinizi arayan kullanıcıların karşısına çıkıp, onları markanıza yönlendiriyoruz.", icon: "fa-chess-knight" },
+                { title: "YouTube Marka İnşası", desc: "Doğru hedeflenmiş video stratejileriyle markanızı hedef kitlenizin zihnine kazıyıp gelire dönüştürüyoruz.", icon: "fa-youtube" }
+            ]
+        };
+
         function openAdsPage(platform) {
             const grid = document.getElementById('ads-grid');
             const title = document.getElementById('ads-title');
-            title.innerHTML = platform === 'meta' ? '<i class="fab fa-facebook text-blue-600"></i> Meta Business' : '<i class="fab fa-google text-yellow-500"></i> Google Ads';
+            
+            title.innerHTML = platform === 'meta' ? '<i class="fab fa-facebook text-blue-600"></i> Meta Business Büyüme Stratejileri' : '<i class="fab fa-google text-yellow-500"></i> Google Ads Dönüşüm Stratejileri';
             grid.innerHTML = '';
             
-            const adsData = {
-                meta: [{ title: "Lead Gen", desc: "Form odaklı kurgular.", icon: "fa-users" }],
-                google: [{ title: "Search Ads", desc: "Arama ağı stratejileri.", icon: "fa-search" }]
-            };
-
-            (adsData[platform] || []).forEach(ad => {
-                grid.innerHTML += `<div class="glass p-8 rounded-2xl text-center"><i class="fas ${ad.icon} text-4xl mb-4"></i><h3 class="font-bold">${ad.title}</h3></div>`;
+            adsData[platform].forEach(ad => {
+                grid.innerHTML += `
+                    <div class="glass p-8 rounded-2xl text-center group hover:-translate-y-2 hover:border-primary border border-transparent transition-all duration-300">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas ${ad.icon} text-3xl ${platform === 'meta' ? 'text-blue-400' : 'text-yellow-400'}"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3">${ad.title}</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">${ad.desc}</p>
+                    </div>`;
             });
             switchPage('ads');
         }
