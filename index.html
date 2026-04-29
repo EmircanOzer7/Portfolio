@@ -70,6 +70,7 @@
         </div>
     </nav>
 
+    <!-- Anasayfa -->
     <div id="home-page" class="page-section transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12 opacity-100">
         <div class="text-center max-w-6xl w-full mx-auto my-auto flex flex-col items-center">
             <p class="text-primary font-medium mb-4 tracking-widest uppercase text-sm" data-aos="fade-down">Multidisciplinary Solopreneur</p>
@@ -86,6 +87,7 @@
         </div>
     </div>
 
+    <!-- Projeler Sayfası -->
     <div id="web-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
         <div class="max-w-6xl w-full mx-auto my-auto">
             <div class="text-center mb-12">
@@ -151,6 +153,7 @@
         </div>
     </div>
 
+    <!-- Demo Detay Sayfası -->
     <div id="demo-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
         <div class="max-w-6xl w-full mx-auto my-auto">
             <button onclick="switchPage('web')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Projelere Dön</button>
@@ -162,29 +165,51 @@
         </div>
     </div>
 
+    <!-- Dijital Medya Ana Sayfası -->
     <div id="social-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
         <div class="max-w-6xl w-full mx-auto my-auto text-center">
             <h2 class="text-4xl font-bold mb-12">Pazarlama & Dijital Medya</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 1. Meta Business -->
                 <div onclick="openAdsPage('meta')" class="cursor-pointer glass p-10 rounded-3xl group hover:-translate-y-2 transition-all border-t-4 border-blue-600">
                     <i class="fab fa-facebook text-6xl text-blue-600 mb-4"></i>
                     <h3 class="text-2xl font-bold mb-2">Meta Business</h3>
                     <p class="text-gray-400">Reklam kampanyaları ve dönüşüm yönetimi.</p>
                 </div>
+                
+                <!-- 2. Google Ads -->
                 <div onclick="openAdsPage('google')" class="cursor-pointer glass p-10 rounded-3xl group hover:-translate-y-2 transition-all border-t-4 border-yellow-500">
                     <i class="fab fa-google text-6xl text-yellow-500 mb-4"></i>
                     <h3 class="text-2xl font-bold mb-2">Google Ads</h3>
                     <p class="text-gray-400">Arama ağı ve Performance Max stratejileri.</p>
                 </div>
+                
+                <!-- 3. Instagram Ekosistemi -->
                 <div onclick="switchPage('instagram')" class="cursor-pointer glass p-10 rounded-3xl group hover:-translate-y-2 transition-all border-t-4 border-pink-500">
                     <i class="fab fa-instagram text-6xl text-pink-500 mb-4"></i>
                     <h3 class="text-2xl font-bold mb-2">Instagram Ekosistemi</h3>
                     <p class="text-gray-400">Viral içerikler, grid yapısı ve marka inşası.</p>
                 </div>
+
+                <!-- 4. Altın Sarısı (Gayrimenkul) -->
+                <div onclick="openAdsPage('realestate')" class="cursor-pointer glass p-10 rounded-3xl group hover:-translate-y-2 transition-all border-t-4 border-yellow-400 shadow-[0_0_15px_rgba(250,204,21,0.05)] hover:shadow-[0_0_25px_rgba(250,204,21,0.2)]">
+                    <i class="fab fa-instagram text-6xl text-yellow-400 mb-4 drop-shadow-[0_0_10px_rgba(250,204,21,0.4)]"></i>
+                    <h3 class="text-2xl font-bold mb-2 text-yellow-50">Gayrimenkul Ağı</h3>
+                    <p class="text-gray-400">Ev, tarla ve ticari mülk satış/kiralama işlemleri için yüksek alım gücüne sahip yatırımcı stratejileri.</p>
+                </div>
+
+                <!-- 5. Premium Siyah (Araç & Lüks) -->
+                <div onclick="openAdsPage('automotive')" class="cursor-pointer p-10 rounded-3xl group hover:-translate-y-2 transition-all border-t-4 border-gray-600 bg-gradient-to-b from-gray-800 to-black shadow-[0_0_20px_rgba(0,0,0,0.8)] border-x border-b border-white/5">
+                    <i class="fab fa-instagram text-6xl text-gray-300 mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"></i>
+                    <h3 class="text-2xl font-bold mb-2 text-white">VIP Otomotiv & Lüks</h3>
+                    <p class="text-gray-400">Premium araç, motor ve değerli eşyalarınız için elit kitleleri hedefleyen kapalı devre satış kurguları.</p>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Reklam Platformları Detay Sayfası -->
     <div id="ads-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
         <div class="max-w-6xl w-full mx-auto my-auto">
             <button onclick="switchPage('social')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Medya Menüsüne Dön</button>
@@ -193,13 +218,14 @@
         </div>
     </div>
 
+    <!-- Instagram Sayfası -->
     <div id="instagram-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
         <div class="max-w-6xl w-full mx-auto my-auto">
             <button onclick="switchPage('social')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Medya Menüsüne Dön</button>
             <div class="flex flex-col lg:flex-row gap-8">
                 <div class="w-full lg:w-3/4">
                     <h2 class="text-3xl font-bold mb-6 flex items-center gap-3"><i class="fab fa-instagram text-pink-500"></i> İçerik ve Profil Stratejisi</h2>
-                    <div id="insta-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+                    <div id="insta-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 grid-flow-row-dense"></div>
                 </div>
                 <div class="w-full lg:w-1/4 relative">
                     <div class="sticky top-24 glass p-6 rounded-3xl border-t-4 border-pink-500 shadow-xl text-center">
@@ -290,19 +316,30 @@
             }
         }
 
-        // Yeni Eklenen Etkileyici Hizmet Tanımları
+        // --- YENİ VERİLER: Emlak & Otomotiv ---
         const adsData = {
             meta: [
                 { title: "AI Lookalike Hedefleme", desc: "Mevcut alıcılarınıza benzeyen, satın alma potansiyeli en yüksek yeni kitleleri yapay zeka ile buluyoruz.", icon: "fa-robot" },
-                { title: "High-Ticket Lead Gen", desc: "Araç veya gayrimenkul gibi yüksek bütçeli satışlarınız için nitelikli ve filtrelenmiş müşteri formları topluyoruz.", icon: "fa-funnel-dollar" },
+                { title: "High-Ticket Lead Gen", desc: "Araç veya gayrimenkul gibi yüksek bütçeli satışlarınız için nitelikli müşteri formları topluyoruz.", icon: "fa-funnel-dollar" },
                 { title: "Agresif Retargeting", desc: "Sitenizi terk eden kullanıcıları, karşı konulamaz tekliflerle dijital ayak izlerinden takip edip ikna ediyoruz.", icon: "fa-bullseye" },
-                { title: "Dinamik Kreatifler (DCO)", desc: "Kullanıcı davranışına göre otomatik şekillenen görsel ve metin kombinasyonlarıyla maliyetleri düşürüyoruz.", icon: "fa-layer-group" }
+                { title: "Dinamik Kreatifler (DCO)", desc: "Kullanıcı davranışına göre otomatik şekillenen görsel kombinasyonlarıyla maliyetleri düşürüyoruz.", icon: "fa-layer-group" }
             ],
             google: [
                 { title: "Performance Max Büyüsü", desc: "Tek kampanya ile Google Arama, YouTube, Gmail ve Haritalar'daki en kârlı müşterilere aynı anda ulaşıyoruz.", icon: "fa-bolt" },
                 { title: "Niyet Odaklı Search", desc: "Sadece hizmetinizi arayan, cüzdanı elinde hazır bekleyen (High-Intent) kullanıcıları sitenize çekiyoruz.", icon: "fa-search-dollar" },
                 { title: "Rakip Trafiği Avcılığı", desc: "Sektördeki en büyük rakiplerinizi arayan kullanıcıların karşısına çıkıp, onları markanıza yönlendiriyoruz.", icon: "fa-chess-knight" },
                 { title: "YouTube Marka İnşası", desc: "Doğru hedeflenmiş video stratejileriyle markanızı hedef kitlenizin zihnine kazıyıp gelire dönüştürüyoruz.", icon: "fa-youtube" }
+            ],
+            realestate: [
+                { title: "Görsel Şölen (Reels/Dron)", desc: "Lüks ev ve arazilerin potansiyelini alıcıya yaşatan, sinematik ve yüksek kaliteli video prodüksiyonu.", icon: "fa-home" },
+                { title: "Nitelikli Alıcı Hedefleme", desc: "Sadece fiyat soranları değil, gerçek yatırımcıları ve yüksek bütçeli kitleleri filtreleyen özel algoritmik yapı.", icon: "fa-bullseye" },
+                { title: "Otorite & Güven İnşası", desc: "Gayrimenkul danışmanının bölgedeki hakimiyetini kanıtlayan, güven veren güçlü kişisel marka (Personal Brand) kurguları.", icon: "fa-building" },
+                { title: "Aciliyet ve Değer Vurgusu", desc: "Kiralama ve satış süreçlerini hızlandırmak için fırsat algısını güçlendiren, profesyonel copywriting (metin yazarlığı).", icon: "fa-file-signature" }
+            ],
+            automotive: [
+                { title: "Premium Vitrin (Showroom)", desc: "Araba ve motorların şık, agresif ve adrenalin dolu detaylarını öne çıkaran elit görsel tasarımlar.", icon: "fa-car" },
+                { title: "High-Ticket Eşleştirme", desc: "Değerli eşya ve lüks araç koleksiyonerlerinin sosyal medyadaki dijital ayak izlerini takip ederek doğrudan nokta atışı teklifler.", icon: "fa-gem" },
+                { title: "Statü & FOMO Mühendisliği", desc: "Alıcının statü arzusunu tetikleyen ve 'Bu aracı başkası almadan ben almalıyım' dedirten psikolojik satış metinleri.", icon: "fa-stopwatch" }
             ]
         };
 
@@ -310,14 +347,29 @@
             const grid = document.getElementById('ads-grid');
             const title = document.getElementById('ads-title');
             
-            title.innerHTML = platform === 'meta' ? '<i class="fab fa-facebook text-blue-600"></i> Meta Business Büyüme Stratejileri' : '<i class="fab fa-google text-yellow-500"></i> Google Ads Dönüşüm Stratejileri';
+            // Platform başlıkları ve ikon renkleri
+            const platformTitles = {
+                meta: '<i class="fab fa-facebook text-blue-600"></i> Meta Business Büyüme Stratejileri',
+                google: '<i class="fab fa-google text-yellow-500"></i> Google Ads Dönüşüm Stratejileri',
+                realestate: '<i class="fab fa-instagram text-yellow-400 drop-shadow-md"></i> Gayrimenkul & Yatırım Stratejileri',
+                automotive: '<i class="fab fa-instagram text-gray-300 drop-shadow-md"></i> Lüks Otomotiv & Premium Satış'
+            };
+            
+            title.innerHTML = platformTitles[platform] || 'Stratejiler';
             grid.innerHTML = '';
             
-            adsData[platform].forEach(ad => {
+            // Kartlardaki ikon renklerini platforma göre ayarlama
+            let iconColorClass = 'text-primary';
+            if(platform === 'meta') iconColorClass = 'text-blue-400';
+            if(platform === 'google') iconColorClass = 'text-yellow-400';
+            if(platform === 'realestate') iconColorClass = 'text-yellow-400';
+            if(platform === 'automotive') iconColorClass = 'text-gray-300';
+            
+            (adsData[platform] || []).forEach(ad => {
                 grid.innerHTML += `
                     <div class="glass p-8 rounded-2xl text-center group hover:-translate-y-2 hover:border-primary border border-transparent transition-all duration-300">
                         <div class="w-16 h-16 mx-auto rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas ${ad.icon} text-3xl ${platform === 'meta' ? 'text-blue-400' : 'text-yellow-400'}"></i>
+                            <i class="fas ${ad.icon} text-3xl ${iconColorClass}"></i>
                         </div>
                         <h3 class="font-bold text-xl mb-3">${ad.title}</h3>
                         <p class="text-sm text-gray-400 leading-relaxed">${ad.desc}</p>
@@ -328,9 +380,50 @@
 
         function renderInstagram() {
             const grid = document.getElementById('insta-grid');
-            for(let i=0; i<8; i++) {
-                grid.innerHTML += `<div class="glass rounded-xl overflow-hidden h-40 bg-gray-800"></div>`;
-            }
+            grid.innerHTML = ''; 
+            
+            grid.innerHTML += `
+                <a href="https://www.instagram.com/wasdoms/" target="_blank" class="sm:row-span-2 h-[336px] glass rounded-2xl overflow-hidden group hover:border-primary transition-all border border-transparent flex flex-col relative shadow-xl">
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=500&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60">
+                    
+                    <div class="relative z-20 p-6 flex flex-col h-full justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 flex items-center justify-center mb-4 shadow-lg">
+                                <i class="fab fa-instagram text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-1">@wasdoms</h3>
+                            <p class="text-sm text-gray-300">İçerik üretim ve büyüme stratejilerimi doğrudan gözlemleyin.</p>
+                        </div>
+                        
+                        <div class="mt-auto bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/10 flex justify-between items-center group-hover:bg-primary/30 transition-colors">
+                            <span class="text-sm font-bold text-white">Sayfamı ziyaret edin</span>
+                            <i class="fas fa-arrow-right text-white group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+            `;
+
+            const instaFeatures = [
+                { title: "Profil & Banner Tasarımı", desc: "Markanıza yakışan profesyonel öne çıkanlar ve estetik grid yapısı.", icon: "fa-border-all" },
+                { title: "Metin (Copywriting)", desc: "Kullanıcıları yorum ve kaydetmeye teşvik eden kancalı (hook) açıklamalar.", icon: "fa-pen-nib" },
+                { title: "Etkileyici Fotoğraflar", desc: "Yüksek çözünürlüklü ve algoritmada öne çıkan kaliteli görsel seçimi.", icon: "fa-image" },
+                { title: "Viral Reels Kurguları", desc: "İlk 3 saniye kuralına uyan, izlenme süresini zirveye taşıyan dinamik videolar.", icon: "fa-video" },
+                { title: "Story Etkileşimi", desc: "Anket ve soru çıkartmalarıyla takipçilerle kurulan sıcak, samimi marka bağı.", icon: "fa-history" },
+                { title: "Keşfet & Algoritma", desc: "Sayfanızı rakiplerin önüne geçirecek hashtag ve doğru saat paylaşım stratejisi.", icon: "fa-chart-line" }
+            ];
+
+            instaFeatures.forEach(feat => {
+                grid.innerHTML += `
+                    <div class="h-40 glass rounded-2xl p-5 hover:-translate-y-1 transition-transform group hover:bg-white/5 border border-transparent hover:border-pink-500/50 flex flex-col justify-center">
+                        <div class="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center mb-3 group-hover:bg-pink-500 transition-colors">
+                            <i class="fas ${feat.icon} text-lg text-pink-500 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h4 class="font-bold text-md mb-1 text-white">${feat.title}</h4>
+                        <p class="text-xs text-gray-400 line-clamp-2">${feat.desc}</p>
+                    </div>
+                `;
+            });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
