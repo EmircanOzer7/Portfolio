@@ -49,22 +49,29 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 2px;
+            z-index: 1001; /* Mobilde menünün üstünde kalması için */
         }
 
-        nav ul {
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links ul {
             display: flex;
             list-style: none;
             gap: 30px;
         }
 
-        nav ul li a {
+        .nav-links ul li a {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 600;
             transition: color 0.3s ease;
         }
 
-        nav ul li a:hover {
+        .nav-links ul li a:hover {
             color: var(--primary-color);
         }
 
@@ -84,6 +91,23 @@
             box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
         }
 
+        /* --- Hamburger Menü (Mobilde Görünür) --- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background-color: var(--text-dark);
+            margin-bottom: 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
         /* --- Hero Bölümü --- */
         .hero {
             height: 100vh;
@@ -101,7 +125,7 @@
         }
 
         .hero-content h1 {
-            font-size: 5rem;
+            font-size: 4.5rem;
             line-height: 1.1;
             margin-bottom: 20px;
             color: var(--text-dark);
@@ -112,12 +136,13 @@
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 40px;
             opacity: 0.8;
+            line-height: 1.6;
         }
 
-        /* --- Animasyonlu Şekiller ve Meyveler --- */
+        /* --- Animasyonlu Şekiller --- */
         .hero-image-container {
             position: relative;
             width: 50%;
@@ -130,8 +155,8 @@
 
         .blob {
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 450px;
+            height: 450px;
             background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
             border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
             animation: morph 8s ease-in-out infinite;
@@ -140,8 +165,8 @@
         }
 
         .bottle-placeholder {
-            width: 250px;
-            height: 500px;
+            width: 220px;
+            height: 450px;
             background: rgba(255, 255, 255, 0.3);
             border: 2px solid white;
             border-radius: 120px;
@@ -158,19 +183,18 @@
 
         .floating-fruit {
             position: absolute;
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             background: var(--secondary-color);
             border-radius: 50%;
             z-index: 3;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        .fruit-1 { top: 20%; left: 10%; animation: float 5s ease-in-out infinite; background: #ff9ff3; }
-        .fruit-2 { bottom: 20%; right: 15%; animation: float 7s ease-in-out infinite reverse; background: #feca57; }
-        .fruit-3 { top: 60%; left: -5%; animation: float 6s ease-in-out infinite 1s; background: #1dd1a1; width: 50px; height: 50px;}
+        .fruit-1 { top: 25%; left: 15%; animation: float 5s ease-in-out infinite; background: #ff9ff3; }
+        .fruit-2 { bottom: 25%; right: 20%; animation: float 7s ease-in-out infinite reverse; background: #feca57; }
+        .fruit-3 { top: 60%; left: 0%; animation: float 6s ease-in-out infinite 1s; background: #1dd1a1; width: 40px; height: 40px;}
 
-        /* --- Kaydırma Animasyonları (Scroll Reveal) --- */
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -195,13 +219,85 @@
             100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        /* Responsive Tasarım */
-        @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; justify-content: center; }
-            .hero-content { max-width: 100%; margin-bottom: 50px; }
-            .hero-content h1 { font-size: 3.5rem; }
-            .hero-image-container { width: 100%; height: 50vh; }
-            nav ul { display: none; }
+        /* --- Mobil Uyum (Responsive) --- */
+        @media (max-width: 900px) {
+            header {
+                padding: 15px 30px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 0;
+                right: -100%; /* Ekran dışına sakla */
+                height: 100vh;
+                width: 250px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+            }
+
+            .nav-links.active {
+                right: 0; /* Menüyü içeri kaydır */
+            }
+
+            .nav-links ul {
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 30px;
+            }
+
+            /* Hamburger Animasyonu Sınıfları */
+            .hamburger.toggle span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.toggle span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.toggle span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+                padding: 100px 5% 50px 5%; /* Menü yüksekliğini hesaba kat */
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 40px;
+                z-index: 5;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-image-container {
+                width: 100%;
+                height: 400px;
+            }
+
+            .blob {
+                width: 300px;
+                height: 300px;
+            }
+
+            .bottle-placeholder {
+                width: 160px;
+                height: 320px;
+            }
         }
     </style>
 </head>
@@ -209,21 +305,28 @@
 
     <header id="navbar">
         <div class="logo">Fruity.</div>
-        <nav>
+        
+        <div class="nav-links" id="nav-links">
             <ul>
                 <li><a href="#home">Ana Sayfa</a></li>
                 <li><a href="#flavors">Aromalar</a></li>
                 <li><a href="#about">Hakkımızda</a></li>
             </ul>
-        </nav>
-        <a href="#order" class="btn-order">Sipariş Ver</a>
+            <a href="#order" class="btn-order">Sipariş Ver</a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
 
     <section class="hero" id="home">
         <div class="hero-content reveal">
             <h1>Gerçek Meyve, <br><span>Gerçek Enerji.</span></h1>
             <p>Şeker ilavesiz, %100 soğuk sıkım taze meyve sularıyla gününe canlılık kat. Doğanın sunduğu en saf tatlar Fruity şişesinde.</p>
-            <a href="#flavors" class="btn-order" style="padding: 15px 35px; font-size: 1.1rem;">Keşfet</a>
+            <a href="#flavors" class="btn-order" style="padding: 15px 35px; font-size: 1.1rem; display: inline-block;">Keşfet</a>
         </div>
         
         <div class="hero-image-container reveal">
@@ -232,14 +335,13 @@
             <div class="floating-fruit fruit-2"></div>
             <div class="floating-fruit fruit-3"></div>
             
-            <!-- Şişe görseli yerine geçen animasyonlu alan (Buraya ürün PNG'si eklenebilir) -->
             <div class="bottle-placeholder">
                 <img src="https://via.placeholder.com/150x400/ffffff/ff6b6b?text=Şişe+Görseli" alt="Fruity Şişe" style="border-radius: 80px; width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
             </div>
         </div>
     </section>
 
-    <!-- JS Animasyon Tetikleyicileri -->
+    <!-- JS İşlemleri -->
     <script>
         // Scroll Reveal Animasyonu
         function reveal() {
@@ -247,26 +349,47 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
+                var elementVisible = 50;
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
-        // Sayfa yüklendiğinde hero kısmını oynat
         setTimeout(reveal, 100);
 
         // Navbar Scroll Efekti
         window.addEventListener("scroll", function() {
             var navbar = document.getElementById("navbar");
             if (window.scrollY > 50) {
-                navbar.style.background = "rgba(255, 255, 255, 0.9)";
+                navbar.style.background = "rgba(255, 255, 255, 0.95)";
                 navbar.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
             } else {
                 navbar.style.background = "rgba(255, 255, 255, 0.2)";
                 navbar.style.boxShadow = "none";
             }
+        });
+
+        // Hamburger Menü İşlevselliği
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            // Menüyü aç/kapat
+            navLinks.classList.toggle('active');
+            // İkon animasyonunu tetikle
+            hamburger.classList.toggle('toggle');
+        });
+
+        // Menüdeki bir linke tıklandığında menüyü kapat (Mobilde gezinmeyi kolaylaştırır)
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if(navLinks.classList.contains('active')){
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('toggle');
+                }
+            });
         });
     </script>
 </body>
