@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFinance | Finansal Özgürlüğe Giden Yol</title>
+    <style>
+        /* --- Değişkenler ve Temel Ayarlar --- */
+        :root {
+            --bg-dark: #0b0e14;
+            --bg-card: #151a23;
+            --k-green: #00c853;
+            --k-green-glow: rgba(0, 200, 83, 0.2);
+            --k-red: #ff3b30;
+            --text-main: #f5f5f5;
+            --text-muted: #8b949e;
+            --nav-bg: rgba(11, 14, 20, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Navbar --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+        .logo span { color: var(--k-green); }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: var(--k-red);
+            border: 1px solid var(--k-red);
+        }
+        .btn-login:hover {
+            background: rgba(255, 59, 48, 0.1);
+        }
+
+        .btn-signup {
+            background: var(--k-green);
+            color: #000;
+            box-shadow: 0 0 15px var(--k-green-glow);
+        }
+        .btn-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 200, 83, 0.4);
+        }
+
+        /* --- Genel Bölüm Ayarları --- */
+        section {
+            min-height: 100vh;
+            padding: 100px 5% 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* --- 1. Bölüm: Hero & Interaktif Grafik --- */
+        #hero { padding-top: 150px; justify-content: flex-start; }
+        
+        .chart-wrapper {
+            width: 100%;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-top: 20px;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .chart-title h3 { font-size: 1.5rem; }
+        .chart-title span { color: var(--text-muted); font-size: 0.9rem; }
+        .chart-price { text-align: right; }
+        .chart-price h2 { font-size: 2rem; color: var(--k-green); }
+        .chart-price span { color: var(--k-green); font-size: 1rem; }
+
+        /* Kaydırılabilir Grafik Konteyneri */
+        .scrollable-chart {
+            width: 100%;
+            overflow-x: auto;
+            cursor: grab;
+            padding-bottom: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--k-green) var(--bg-card);
+        }
+        .scrollable-chart:active { cursor: grabbing; }
+        
+        .scrollable-chart::-webkit-scrollbar { height: 8px; }
+        .scrollable-chart::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
+        
+        .chart-inner {
+            width: 1800px; /* Geniş alan, kaydırma için */
+            height: 300px;
+            position: relative;
+            background: repeating-linear-gradient(
+                to right,
+                rgba(255,255,255,0.02),
+                rgba(255,255,255,0.02) 50px,
+                transparent 50px,
+                transparent 100px
+            );
+        }
+
+        /* Temsili SVG Grafik Çizgisi */
+        .chart-line {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: var(--k-green);
+            stroke-width: 3;
+            filter: drop-shadow(0px 10px 10px rgba(0,200,83,0.3));
+        }
+
+        /* --- 2. Bölüm: Hisseler --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease;
+        }
+        .card:hover { transform: translateY(-5px); }
+        
+        .ticker { display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: bold; font-size: 1.2rem;}
+        .price { font-size: 1.5rem; margin-bottom: 5px; }
+        .change.up { color: var(--k-green); }
+        .change.down { color: var(--k-red); }
+
+        /* --- Animasyon Sınıfları --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .section-title { font-size: 2rem; }
+            header { padding: 15px 5%; }
+            .logo { font-size: 1.5rem; }
+            .btn { padding: 8px 15px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">K<span>Finance</span></div>
+        <div class="auth-buttons">
+            <button class="btn btn-login">Login</button>
+            <button class="btn btn-signup">Sign Up</button>
+        </div>
+    </header>
+
+    <!-- 1. BÖLÜM: HERO & GRAFİK -->
+    <section id="hero">
+        <div class="reveal">
+            <h1 class="section-title">Portföyünüzü Gerçek Zamanlı Yönetin</h1>
+            <p class="section-desc">Geleceği şansa bırakmayın. Finansal özgürlüğünüzü inşa ederken piyasaları anlık izleyin, yüksek performanslı araçlarla yatırımlarınıza yön verin.</p>
+        </div>
+
+        <div class="chart-wrapper reveal">
+            <div class="chart-header">
+                <div class="chart-title">
+                    <h3>Google LLC</h3>
+                    <span>NASDAQ: GOOGL (İnteraktif Grafik)</span>
+                </div>
+                <div class="chart-price">
+                    <h2>$171.42</h2>
+                    <span>+2.34 (1.38%) Yükseliş</span>
+                </div>
+            </div>
+            
+            <!-- Mouse ve Parmakla Kaydırılabilir Alan -->
+            <div class="scrollable-chart" id="drag-chart">
+                <div class="chart-inner">
+                    <svg class="chart-line" viewBox="0 0 1800 300" preserveAspectRatio="none">
+                        <!-- Yapay Bir Borsa Grafiği Çizgisi -->
+                        <path d="M0 250 L100 230 L200 240 L300 180 L400 190 L500 120 L600 140 L700 90 L800 110 L900 50 L1000 80 L1100 40 L1200 60 L1300 20 L1400 30 L1500 80 L1600 50 L1700 70 L1800 10"/>
+                        <path d="M0 250 L100 230 L200 240 L300 180 L400 190 L500 120 L600 140 L700 90 L800 110 L900 50 L1000 80 L1100 40 L1200 60 L1300 20 L1400 30 L1500 80 L1600 50 L1700 70 L1800 10 L1800 300 L0 300 Z" fill="rgba(0, 200, 83, 0.05)" stroke="none"/>
+                    </svg>
+                </div>
+            </div>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">Sağa ve sola kaydırmak için tutun ve sürükleyin (Mobilde parmağınızla kaydırın)</p>
+        </div>
+    </section>
+
+    <!-- 2. BÖLÜM: HİSSELER -->
+    <section id="stocks" style="background-color: var(--bg-dark);">
+        <h2 class="section-title reveal">Popüler Hisseler</h2>
+        <p class="section-desc reveal">Global piyasalardaki en hareketli varlıkları takip edin. Fırsatları kaçırmayın.</p>
+        
+        <div class="grid-cards reveal">
+            <div class="card">
+                <div class="ticker"><span>AAPL</span> <span>Apple Inc.</span></div>
+                <div class="price">$189.20</div>
+                <div class="change down">-1.24% ▼</div>
+            </div>
+            <div class="card" style="border-color: rgba(0,200,83,0.3);">
+                <div class="ticker"><span>NVDA</span> <span>NVIDIA</span></div>
+                <div class="price">$894.00</div>
+                <div class="change up">+4.56% ▲</div>
+            </div>
+            <div class="card">
+                <div class="ticker"><span>TSLA</span> <span>Tesla</span></div>
+                <div class="price">$174.50</div>
+                <div class="change down">-0.80% ▼</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. BÖLÜM: KRİPTO -->
+    <section id="crypto">
+        <h2 class="section-title reveal">Kripto Piyasası</h2>
+        <p class="section-desc reveal">7/24 açık kripto para borsasında anlık değişimleri izleyin.</p>
+        
+        <div class="grid-cards reveal">
+            <div class="card">
+                <div class="ticker"><span>BTC</span> <span>Bitcoin</span></div>
+                <div class="price">$64,230.00</div>
+                <div class="change up">+2.10% ▲</div>
+            </div>
+            <div class="card">
+                <div class="ticker"><span>ETH</span> <span>Ethereum</span></div>
+                <div class="price">$3,450.20</div>
+                <div class="change up">+1.45% ▲</div>
+            </div>
+            <div class="card">
+                <div class="ticker"><span>SOL</span> <span>Solana</span></div>
+                <div class="price">$145.80</div>
+                <div class="change down">-3.20% ▼</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. BÖLÜM: EKONOMİ EĞİTİMİ -->
+    <section id="education" style="background-color: var(--bg-card);">
+        <h2 class="section-title reveal">Sıfırdan Zirveye Ekonomi Eğitimi</h2>
+        <p class="section-desc reveal">Sadece veri sunmuyoruz, yatırımı öğretiyoruz. Kendi sisteminizi kurmanız için hazırlanan eğitim modülleri.</p>
+        
+        <div class="grid-cards reveal">
+            <div class="card">
+                <h3 style="margin-bottom: 10px;">Teknik Analiz 101</h3>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">Grafik okuma, destek/direnç noktaları belirleme ve trend çizgileri çizme sanatı.</p>
+                <button class="btn btn-login">Dersi İzle</button>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom: 10px;">Risk Yönetimi</h3>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">Sermayenizi nasıl koruyacağınızı ve kriz anlarında nasıl pozisyon alacağınızı öğrenin.</p>
+                <button class="btn btn-login">Dersi İzle</button>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom: 10px;">Girişimci Portföyü</h3>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">Nakit akışınızı yönetirken uzun vadeli büyüme hisselerini nasıl seçeceğinizi keşfedin.</p>
+                <button class="btn btn-login">Dersi İzle</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. BÖLÜM: YAPAY ZEKA ANALİZİ -->
+    <section id="ai-analysis">
+        <h2 class="section-title reveal">Gelişmiş AI Analizleri</h2>
+        <p class="section-desc reveal">Makine öğrenimi destekli algoritmalarımızla haber duyarlılığını (sentiment) ve piyasa trendlerini önceden analiz edin.</p>
+        <div class="chart-wrapper reveal" style="padding: 40px; text-align: center;">
+            <h3 style="color: var(--k-green); margin-bottom: 15px;">Piyasa Duyarlılığı: POZİTİF (82/100)</h3>
+            <p style="color: var(--text-muted);">Son 24 saat içindeki 10.000 finansal haber ve makale taranarak hesaplanmıştır.</p>
+        </div>
+    </section>
+
+    <!-- 6. BÖLÜM: HAREKETE GEÇ (CTA) & FOOTER -->
+    <section id="cta" style="background-color: var(--bg-card); align-items: center; text-align: center; min-height: 70vh;">
+        <h2 class="section-title reveal">Yatırımlarınızı Yönetmeye Başlayın</h2>
+        <p class="section-desc reveal" style="margin: 0 auto 30px auto;">Bugün KFinance'a katılın ve finansal dünyanızı tek bir profesyonel panelden yönetin.</p>
+        <button class="btn btn-signup reveal" style="font-size: 1.2rem; padding: 15px 40px;">Ücretsiz Hesap Oluştur</button>
+    </section>
+
+    <footer style="text-align: center; padding: 30px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted);">
+        <p>&copy; 2026 KFinance. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <!-- JavaScript Fonksiyonları -->
+    <script>
+        // Scroll Reveal Animasyonu
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        setTimeout(reveal, 100);
+
+        // Grafik için Mouse Drag (Sürükle) Fonksiyonu
+        const slider = document.getElementById('drag-chart');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // Sürükleme hızı çarpanı
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        // Mobilde başlangıçta grafiği ortalamak için
+        window.onload = () => {
+            slider.scrollLeft = 400; 
+        }
+    </script>
+</body>
+</html>
