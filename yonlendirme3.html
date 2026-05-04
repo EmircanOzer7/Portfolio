@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StepUp Shoes | Adımını Fark Et</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #ff4757;
+            --light-bg: #f4f4f4;
+            --white: #ffffff;
+            --text-dark: #2f3542;
+            --text-muted: #747d8c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Navigasyon --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .logo span { color: var(--accent); }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* --- Genel Bölüm Ayarları --- */
+        section {
+            padding: 100px 8%;
+            min-height: 80vh;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+        }
+
+        /* --- 1. HERO BÖLÜMÜ --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding-top: 120px;
+        }
+
+        .hero-content { max-width: 500px; }
+        .hero-content h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero-content p { color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem; }
+
+        .btn {
+            padding: 15px 35px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .btn:hover { background: var(--accent); transform: scale(1.05); }
+
+        .hero-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-img img {
+            width: 120%;
+            transform: rotate(-15deg);
+            filter: drop-shadow(20px 40px 30px rgba(0,0,0,0.2));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* --- 2. KATEGORİLER --- */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .cat-card {
+            height: 300px;
+            background: #333;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .cat-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.7; }
+        .cat-card:hover img { transform: scale(1.1); opacity: 0.5; }
+        .cat-card h3 {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* --- 3. ÜRÜN KARTLARI (En Çok Satanlar) --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #eee;
+            transition: 0.3s;
+            position: relative;
+        }
+        .product-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .product-card img { width: 100%; margin-bottom: 15px; transition: 0.3s; }
+        .product-card:hover img { transform: translateY(-10px); }
+        .product-card h4 { font-size: 1.2rem; margin-bottom: 5px; }
+        .product-card .price { color: var(--accent); font-weight: 800; font-size: 1.3rem; }
+        .add-to-cart {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* --- 4. KAMPANYA BANNER --- */
+        .promo-banner {
+            background: var(--accent);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px !important;
+        }
+        .promo-banner h2 { font-size: 3.5rem; margin-bottom: 20px; }
+
+        /* --- 6. MÜŞTERİ YORUMLARI --- */
+        .testimonials { background: var(--light-bg); }
+        .testi-container { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .testi-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 350px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* --- 7. FOOTER --- */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 80px 8% 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+        }
+        footer h3 { margin-bottom: 20px; }
+        footer ul { list-style: none; }
+        footer ul li { margin-bottom: 10px; color: #ccc; cursor: pointer; }
+        .footer-bottom {
+            grid-column: 1 / -1;
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* --- Animasyonlar --- */
+        @keyframes float {
+            0%, 100% { transform: rotate(-15deg) translateY(0); }
+            50% { transform: rotate(-15deg) translateY(-20px); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s all ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-img img { width: 100%; margin-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Step<span>Up.</span></div>
+        <div class="nav-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-shopping-bag"></i>
+            <i class="fas fa-user"></i>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Tarzını Adımlarınla Göster.</h1>
+            <p>Yeni sezon koleksiyonumuzda konfor ve şıklığı bir araya getirdik. En iyi performans ayakkabıları şimdi indirimde.</p>
+            <a href="#shop" class="btn">Şimdi Alışverişe Başla</a>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Shoe">
+        </div>
+    </section>
+
+    <section id="categories">
+        <div class="section-title reveal">
+            <h2>Kategoriler</h2>
+        </div>
+        <div class="categories-grid reveal">
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=500&q=80" alt="">
+                <h3>Sneakers</h3>
+            </div>
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=500&q=80" alt="">
+                <h3>Koşu & Spor</h3>
+            </div>
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=500&q=80" alt="">
+                <h3>Klasik</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop">
+        <div class="section-title reveal">
+            <h2>En Çok Satanlar</h2>
+        </div>
+        <div class="product-grid reveal">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="">
+                <h4>Air Max Pro White</h4>
+                <p class="price">2.450 TL</p>
+                <div class="add-to-cart"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=400&q=80" alt="">
+                <h4>Green Venom Runner</h4>
+                <p class="price">1.890 TL</p>
+                <div class="add-to-cart"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=400&q=80" alt="">
+                <h4>Urban Street Grey</h4>
+                <p class="price">3.200 TL</p>
+                <div class="add-to-cart"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=400&q=80" alt="">
+                <h4>Sunset Leather Special</h4>
+                <p class="price">4.100 TL</p>
+                <div class="add-to-cart"><i class="fas fa-plus"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="promo-banner reveal">
+        <h2>%50'YE VARAN İNDİRİM</h2>
+        <p>Sezon sonu indirimlerini kaçırmayın. Tüm spor ayakkabılarda sepette ek avantajlar.</p>
+        <br>
+        <a href="#" class="btn" style="background: white; color: var(--accent);">Fırsatları Gör</a>
+    </section>
+
+    <section id="new-arrivals">
+        <div class="section-title reveal">
+            <h2>Yeni Koleksiyon</h2>
+        </div>
+        <div class="product-grid reveal">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=400&q=80" alt="">
+                <h4>Vans Classic Mood</h4>
+                <p class="price">1.550 TL</p>
+                <div class="add-to-cart"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1584735175315-9d5df23860e6?auto=format&fit=crop&w=400&q=80" alt="">
+                <h4>Deep Black Performance</h4>
+                <p class="price">2.750 TL</p>
+                <div class="add-to-cart"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=400&q=80" alt="">
+                <h4>Midnight Blue Sports</h4>
+                <p class="price">2.100 TL</p>
+                <div class="add-to-cart"><i class="fas fa-plus"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-title reveal">
+            <h2>Müşterilerimiz Ne Diyor?</h2>
+        </div>
+        <div class="testi-container reveal">
+            <div class="testi-card">
+                <p>"Aldığım en rahat ayakkabı. Kargo çok hızlıydı, teşekkürler StepUp!"</p>
+                <br>
+                <strong>- Ahmet Y.</strong>
+            </div>
+            <div class="testi-card">
+                <p>"Ürün görseldekinden daha kaliteli duruyor. Tam numaranızı almanızı tavsiye ederim."</p>
+                <br>
+                <strong>- Selin K.</strong>
+            </div>
+            <div class="testi-card">
+                <p>"Müşteri hizmetleri çok ilgili. Değişim sürecinde hiç sorun yaşamadım."</p>
+                <br>
+                <strong>- Mert E.</strong>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <div class="logo" style="color: white;">Step<span>Up.</span></div>
+            <p style="margin-top: 15px; color: #ccc;">Dünyanın en kaliteli markalarını sizinle buluşturuyoruz.</p>
+        </div>
+        <div>
+            <h3>Linkler</h3>
+            <ul>
+                <li>Anasayfa</li>
+                <li>Mağaza</li>
+                <li>Hakkımızda</li>
+                <li>İletişim</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Yardım</h3>
+            <ul>
+                <li>Kargo Takip</li>
+                <li>İade Koşulları</li>
+                <li>Sıkça Sorulan Sorular</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Takip Edin</h3>
+            <div class="nav-icons" style="margin-top: 10px;">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-facebook"></i>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 StepUp Shoes. Tüm hakları saklıdır.
+        </div>
+    </footer>
+
+    <script>
+        // Sayfa kaydırıldıkça öğelerin belirme efekti (Scroll Reveal)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Sayfa açıldığında ilk yükleme için çalıştır
+        reveal();
+    </script>
+</body>
+</html>
