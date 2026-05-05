@@ -196,14 +196,21 @@
                 <div onclick="openAdsPage('realestate')" class="cursor-pointer glass p-10 rounded-3xl group hover:-translate-y-2 transition-all border-t-4 border-yellow-400 shadow-[0_0_15px_rgba(250,204,21,0.05)] hover:shadow-[0_0_25px_rgba(250,204,21,0.2)]">
                     <i class="fab fa-instagram text-6xl text-yellow-400 mb-4 drop-shadow-[0_0_10px_rgba(250,204,21,0.4)]"></i>
                     <h3 class="text-2xl font-bold mb-2 text-yellow-50">Gayrimenkul Ağı</h3>
-                    <p class="text-gray-400">Ev, tarla ve ticari mülk satış/kiralama işlemleri için yüksek alım gücüne sahip yatırımcı stratejileri.</p>
+                    <p class="text-gray-400">Ev, tarla ve ticari mülk işlemleri için yüksek alım gücüne sahip kitle stratejileri.</p>
                 </div>
 
                 <!-- 5. Premium Siyah (Araç & Lüks) -->
                 <div onclick="openAdsPage('automotive')" class="cursor-pointer p-10 rounded-3xl group hover:-translate-y-2 transition-all border-t-4 border-gray-600 bg-gradient-to-b from-gray-800 to-black shadow-[0_0_20px_rgba(0,0,0,0.8)] border-x border-b border-white/5">
                     <i class="fab fa-instagram text-6xl text-gray-300 mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"></i>
                     <h3 class="text-2xl font-bold mb-2 text-white">VIP Otomotiv & Lüks</h3>
-                    <p class="text-gray-400">Premium araç, motor ve değerli eşyalarınız için elit kitleleri hedefleyen kapalı devre satış kurguları.</p>
+                    <p class="text-gray-400">Premium araç, motor ve değerli eşyalarınız için kapalı devre satış kurguları.</p>
+                </div>
+
+                <!-- 6. YENİ: YouTube Ekosistemi -->
+                <div onclick="switchPage('youtube')" class="cursor-pointer glass p-10 rounded-3xl group hover:-translate-y-2 transition-all border-t-4 border-red-600">
+                    <i class="fab fa-youtube text-6xl text-red-600 mb-4 drop-shadow-[0_0_10px_rgba(220,38,38,0.4)]"></i>
+                    <h3 class="text-2xl font-bold mb-2">YouTube Ekosistemi</h3>
+                    <p class="text-gray-400">Kanal büyüme stratejileri, profesyonel kurgu ve yüksek dönüşümlü video içerikleri.</p>
                 </div>
             </div>
         </div>
@@ -235,6 +242,58 @@
                         <div class="text-gray-300 text-sm space-y-3 leading-relaxed">
                             <p>Instagram'ı algoritmaları manipüle ederek kitlelere ulaştığım bir <strong>büyüme motoru</strong> olarak kullanıyorum.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- YENİ: YouTube Sayfası -->
+    <div id="youtube-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
+        <div class="max-w-6xl w-full mx-auto my-auto">
+            <button onclick="switchPage('social')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Medya Menüsüne Dön</button>
+            <div class="flex flex-col lg:flex-row gap-8">
+                
+                <!-- Sol Taraf: 5 Adet Bilgi Tabı -->
+                <div class="w-full lg:w-3/4">
+                    <h2 class="text-3xl font-bold mb-6 flex items-center gap-3"><i class="fab fa-youtube text-red-600"></i> YouTube Yönetim Stratejileri</h2>
+                    <div id="youtube-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+                </div>
+                
+                <!-- Sağ Taraf: Örnek Editler (3 Adet Alt Alta) -->
+                <div class="w-full lg:w-1/4 relative">
+                    <div class="sticky top-24 glass p-6 rounded-3xl border-t-4 border-red-600 shadow-xl">
+                        <h3 class="text-xl font-bold mb-4 text-center border-b border-white/10 pb-3">Örnek Editler</h3>
+                        
+                        <div class="flex flex-col gap-4">
+                            <!-- Link 1 (Dolu) -->
+                            <a href="https://www.youtube.com/watch?v=pfZ6Lievy40" target="_blank" class="glass p-4 rounded-xl flex items-center gap-4 group hover:border-red-600/50 transition-all hover:bg-white/5">
+                                <i class="fab fa-youtube text-3xl text-red-600 group-hover:scale-110 transition-transform"></i>
+                                <div class="flex flex-col">
+                                    <span class="font-bold text-white text-sm">Örnek Edit 1</span>
+                                    <span class="text-xs text-gray-400">İzlemek için tıkla</span>
+                                </div>
+                            </a>
+                            
+                            <!-- Link 2 (Boş) -->
+                            <a href="#" class="glass p-4 rounded-xl flex items-center gap-4 group hover:border-red-600/50 transition-all hover:bg-white/5">
+                                <i class="fab fa-youtube text-3xl text-red-600 group-hover:scale-110 transition-transform"></i>
+                                <div class="flex flex-col">
+                                    <span class="font-bold text-white text-sm">Örnek Edit 2</span>
+                                    <span class="text-xs text-gray-400">Eklenecek...</span>
+                                </div>
+                            </a>
+                            
+                            <!-- Link 3 (Boş) -->
+                            <a href="#" class="glass p-4 rounded-xl flex items-center gap-4 group hover:border-red-600/50 transition-all hover:bg-white/5">
+                                <i class="fab fa-youtube text-3xl text-red-600 group-hover:scale-110 transition-transform"></i>
+                                <div class="flex flex-col">
+                                    <span class="font-bold text-white text-sm">Örnek Edit 3</span>
+                                    <span class="text-xs text-gray-400">Eklenecek...</span>
+                                </div>
+                            </a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -316,7 +375,6 @@
             }
         }
 
-        // --- YENİ VERİLER: Emlak & Otomotiv ---
         const adsData = {
             meta: [
                 { title: "AI Lookalike Hedefleme", desc: "Mevcut alıcılarınıza benzeyen, satın alma potansiyeli en yüksek yeni kitleleri yapay zeka ile buluyoruz.", icon: "fa-robot" },
@@ -347,7 +405,6 @@
             const grid = document.getElementById('ads-grid');
             const title = document.getElementById('ads-title');
             
-            // Platform başlıkları ve ikon renkleri
             const platformTitles = {
                 meta: '<i class="fab fa-facebook text-blue-600"></i> Meta Business Büyüme Stratejileri',
                 google: '<i class="fab fa-google text-yellow-500"></i> Google Ads Dönüşüm Stratejileri',
@@ -358,7 +415,6 @@
             title.innerHTML = platformTitles[platform] || 'Stratejiler';
             grid.innerHTML = '';
             
-            // Kartlardaki ikon renklerini platforma göre ayarlama
             let iconColorClass = 'text-primary';
             if(platform === 'meta') iconColorClass = 'text-blue-400';
             if(platform === 'google') iconColorClass = 'text-yellow-400';
@@ -426,9 +482,36 @@
             });
         }
 
+        // YENİ: YouTube Grid Doldurma Fonksiyonu
+        function renderYoutube() {
+            const grid = document.getElementById('youtube-grid');
+            grid.innerHTML = '';
+            
+            const ytFeatures = [
+                { title: "Kanal Banner & Profil", desc: "Kanalınızın marka kimliğini yansıtan, güven verici ve profesyonel kapak/profil tasarımları.", icon: "fa-image" },
+                { title: "Dinamik Video Kurgu (Edit)", desc: "İzleyiciyi ekranda tutan hızlı kesmeler (jump-cut), ilgi çekici B-roll'lar ve ses tasarımları.", icon: "fa-cut" },
+                { title: "SEO, Başlık & Etiket", desc: "Arama hacmi yüksek anahtar kelimelerle, videonuzun YouTube algoritmasında üst sıralara çıkması.", icon: "fa-search" },
+                { title: "Tıklattıran Thumbnail", desc: "Kullanıcının kaydırırken durup tıklamasını sağlayan (High CTR) merak uyandırıcı kapak tasarımları.", icon: "fa-bolt" },
+                { title: "İzlenme & Retention", desc: "İzlenme süresini (Watch-time) maksimize ederek videoların önerilenlere düşmesini sağlayan kurgular.", icon: "fa-chart-line" }
+            ];
+
+            ytFeatures.forEach(feat => {
+                grid.innerHTML += `
+                    <div class="glass rounded-2xl p-6 hover:-translate-y-1 transition-transform group hover:bg-white/5 border border-transparent hover:border-red-600/50 flex flex-col justify-center min-h-[160px]">
+                        <div class="w-12 h-12 rounded-full bg-red-600/20 flex items-center justify-center mb-4 group-hover:bg-red-600 transition-colors">
+                            <i class="fas ${feat.icon} text-xl text-red-600 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2 text-white">${feat.title}</h4>
+                        <p class="text-sm text-gray-400">${feat.desc}</p>
+                    </div>
+                `;
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             renderProjects();
             renderInstagram();
+            renderYoutube(); // YouTube fonksiyonu çağrıldı
             typeWriter();
         });
     </script>
