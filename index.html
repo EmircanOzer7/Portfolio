@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emircan Özer - Portfolio</title>
+    <title>Emir Can Özer - Portfolio</title>
+    
+    <!-- Modern & Premium Font: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -16,16 +21,27 @@
                     colors: {
                         primary: '#6366f1',
                         secondary: '#ec4899',
-                        dark: '#0a0f1c', /* Daha derin ve modern bir siyah */
+                        dark: '#0a0f1c', 
                     },
-                    animation: { 'blob': 'blob 7s infinite', },
+                    animation: { 
+                        'blob': 'blob 7s infinite', 
+                        'rainbow-fade': 'rainbow-bg 15s ease infinite'
+                    },
                     keyframes: {
                         blob: {
                             '0%': { transform: 'translate(0px, 0px) scale(1)' },
                             '33%': { transform: 'translate(30px, -50px) scale(1.05)' },
                             '66%': { transform: 'translate(-20px, 20px) scale(0.95)' },
                             '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        'rainbow-bg': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' }
                         }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
                     }
                 }
             }
@@ -37,7 +53,6 @@
         ::-webkit-scrollbar-track { background: #0a0f1c; }
         ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; }
         
-        /* Yenilenmiş daha premium Glassmorphism */
         .glass {
             background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(16px);
@@ -48,11 +63,25 @@
         
         .cursor-blink { animation: blink 1s step-end infinite; }
         @keyframes blink { 50% { opacity: 0; } }
+
+        /* Rainbow Gökkuşağı Arka Plan Efekti */
+        .bg-rainbow {
+            background: linear-gradient(90deg, 
+                rgba(255, 0, 0, 0.15), 
+                rgba(255, 154, 0, 0.15), 
+                rgba(208, 222, 33, 0.15), 
+                rgba(79, 220, 74, 0.15), 
+                rgba(28, 127, 238, 0.15), 
+                rgba(95, 21, 242, 0.15), 
+                rgba(251, 7, 217, 0.15), 
+                rgba(255, 0, 0, 0.15));
+            background-size: 300% 300%;
+        }
     </style>
 </head>
 <body class="bg-dark text-slate-200 overflow-x-hidden selection:bg-primary selection:text-white font-sans antialiased">
 
-    <!-- Arka Plan Efektleri -->
+    <!-- Global Arka Plan Efektleri -->
     <div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         <div class="absolute top-[-10%] left-[10%] w-[500px] h-[500px] bg-primary/10 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
         <div class="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-secondary/10 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
@@ -61,28 +90,32 @@
     <!-- Navigasyon -->
     <nav class="fixed w-full z-50 bg-dark/50 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="navbar">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="javascript:switchPage('home')" class="text-xl font-bold tracking-tight text-white hover:text-primary transition-colors">
-                Emircan<span class="text-primary">.</span>
+            <!-- Yenilenmiş Logo: Hover durumunda Emir Mavi, Can Kırmızı olur -->
+            <a href="#home" onclick="switchPage('home'); return false;" class="text-2xl font-bold tracking-tight text-white transition-colors group">
+                <span class="transition-colors duration-300 group-hover:text-blue-500">Emir</span><span class="transition-colors duration-300 group-hover:text-red-500">Can</span><span class="text-primary">.</span>
             </a>
             <div class="hidden md:flex space-x-8 text-sm font-medium items-center">
-                <a href="javascript:switchPage('home')" class="hover:text-white transition-colors">Anasayfa</a>
-                <a href="javascript:switchPage('web')" class="hover:text-white transition-colors">Projeler</a>
-                <a href="javascript:switchPage('social')" class="hover:text-white transition-colors">Dijital Medya</a>
+                <a href="#home" onclick="switchPage('home'); return false;" class="hover:text-white transition-colors">Anasayfa</a>
+                <a href="#web" onclick="switchPage('web'); return false;" class="hover:text-white transition-colors">Projeler</a>
+                <a href="#social" onclick="switchPage('social'); return false;" class="hover:text-white transition-colors">Dijital Medya</a>
             </div>
         </div>
     </nav>
 
     <!-- Anasayfa -->
-    <div id="home-page" class="page-section transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12 opacity-100">
-        <div class="text-center max-w-4xl w-full mx-auto my-auto flex flex-col items-center">
-            <div class="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-6 backdrop-blur-sm" data-aos="fade-down">
-                <p class="text-primary font-semibold tracking-wider uppercase text-xs">Girişimci</p>
+    <div id="home-page" class="page-section transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12 opacity-100 overflow-hidden">
+        <!-- Rainbow Arka Plan (Sadece Anasayfa İçin) -->
+        <div class="absolute inset-0 z-0 bg-rainbow animate-rainbow-fade filter blur-[80px] opacity-70 pointer-events-none"></div>
+
+        <div class="text-center max-w-4xl w-full mx-auto my-auto flex flex-col items-center relative z-10">
+            <div class="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-6 backdrop-blur-sm shadow-lg" data-aos="fade-down">
+                <p class="text-primary font-bold tracking-widest uppercase text-xs">Girişimci</p>
             </div>
             <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-white" data-aos="zoom-in">
-                Emircan <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-500">Özer</span>
+                Emir Can <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-500">Özer</span>
             </h1>
-            <h2 class="text-xl md:text-3xl text-slate-400 mb-12 h-10 font-light" data-aos="fade-up">
-                <span>Odaklandığım alanlar:</span> <span id="typewriter" class="text-white font-medium"></span><span class="cursor-blink text-primary">|</span>
+            <h2 class="text-xl md:text-3xl text-slate-300 mb-12 h-10 font-light" data-aos="fade-up">
+                <span>Odaklandığım alanlar:</span> <span id="typewriter" class="text-white font-semibold"></span><span class="cursor-blink text-primary">|</span>
             </h2>
             <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4 w-full sm:w-auto" data-aos="fade-up">
                 <button onclick="switchPage('web')" class="px-8 py-3.5 bg-white text-dark rounded-xl font-bold hover:bg-slate-200 transition-all transform hover:-translate-y-1 shadow-lg shadow-white/10">Projeleri İncele</button>
@@ -104,7 +137,7 @@
             <div class="mt-20">
                 <h2 class="text-2xl font-bold mb-6 border-b border-white/5 pb-4 text-white">Canlı Proje Örnekleri</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <a href="yonlendirme1.html" target="_blank" class="glass rounded-xl overflow-hidden block group transition-all hover:-translate-y-1 hover:border-primary/50 border border-white/5">
+                    <a href="yonlendirme1.html" target="_blank" class="glass rounded-xl overflow-hidden block group transition-all hover:-translate-y-1 border border-[#c0c0c0]/40 hover:border-[#c0c0c0] shadow-[0_0_15px_rgba(192,192,192,0.1)]">
                         <div class="h-36 overflow-hidden relative bg-slate-900">
                             <img src="https://picsum.photos/400/300?random=101" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
                             <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -116,7 +149,7 @@
                             <p class="text-xs text-slate-400">Canlı incele &rarr;</p>
                         </div>
                     </a>
-                    <a href="yonlendirme2.html" target="_blank" class="glass rounded-xl overflow-hidden block group transition-all hover:-translate-y-1 hover:border-primary/50 border border-white/5">
+                    <a href="yonlendirme2.html" target="_blank" class="glass rounded-xl overflow-hidden block group transition-all hover:-translate-y-1 border border-[#c0c0c0]/40 hover:border-[#c0c0c0] shadow-[0_0_15px_rgba(192,192,192,0.1)]">
                         <div class="h-36 overflow-hidden relative bg-slate-900">
                             <img src="https://picsum.photos/400/300?random=102" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
                             <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -128,7 +161,7 @@
                             <p class="text-xs text-slate-400">Canlı incele &rarr;</p>
                         </div>
                     </a>
-                    <a href="yonlendirme3.html" target="_blank" class="glass rounded-xl overflow-hidden block group transition-all hover:-translate-y-1 hover:border-primary/50 border border-white/5">
+                    <a href="yonlendirme3.html" target="_blank" class="glass rounded-xl overflow-hidden block group transition-all hover:-translate-y-1 border border-[#c0c0c0]/40 hover:border-[#c0c0c0] shadow-[0_0_15px_rgba(192,192,192,0.1)]">
                         <div class="h-36 overflow-hidden relative bg-slate-900">
                             <img src="https://picsum.photos/400/300?random=103" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
                             <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -140,7 +173,7 @@
                             <p class="text-xs text-slate-400">Canlı incele &rarr;</p>
                         </div>
                     </a>
-                    <a href="yonlendirme4.html" target="_blank" class="glass rounded-xl overflow-hidden block group transition-all hover:-translate-y-1 hover:border-primary/50 border border-white/5">
+                    <a href="yonlendirme4.html" target="_blank" class="glass rounded-xl overflow-hidden block group transition-all hover:-translate-y-1 border border-[#c0c0c0]/40 hover:border-[#c0c0c0] shadow-[0_0_15px_rgba(192,192,192,0.1)]">
                         <div class="h-36 overflow-hidden relative bg-slate-900">
                             <img src="https://picsum.photos/400/300?random=104" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
                             <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -178,7 +211,6 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- Meta -->
                 <div onclick="openAdsPage('meta')" class="cursor-pointer glass p-6 rounded-2xl group hover:-translate-y-1 transition-all border border-white/5 hover:border-blue-500/50 relative overflow-hidden bg-gradient-to-b from-white/[0.02] to-transparent">
                     <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 text-blue-500 group-hover:scale-110 transition-transform">
                         <i class="fab fa-facebook text-2xl"></i>
@@ -187,7 +219,6 @@
                     <p class="text-sm text-slate-400">Performans odaklı reklam kurguları ve nitelikli lead yönetimi.</p>
                 </div>
                 
-                <!-- Google -->
                 <div onclick="openAdsPage('google')" class="cursor-pointer glass p-6 rounded-2xl group hover:-translate-y-1 transition-all border border-white/5 hover:border-yellow-500/50 relative overflow-hidden bg-gradient-to-b from-white/[0.02] to-transparent">
                     <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-4 text-yellow-500 group-hover:scale-110 transition-transform">
                         <i class="fab fa-google text-2xl"></i>
@@ -196,7 +227,6 @@
                     <p class="text-sm text-slate-400">Arama niyeti hedefleme ve PMax yapay zeka entegrasyonu.</p>
                 </div>
                 
-                <!-- Instagram -->
                 <div onclick="switchPage('instagram')" class="cursor-pointer glass p-6 rounded-2xl group hover:-translate-y-1 transition-all border border-white/5 hover:border-pink-500/50 relative overflow-hidden bg-gradient-to-b from-white/[0.02] to-transparent">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-pink-500 to-yellow-500 flex items-center justify-center mb-4 text-white shadow-lg group-hover:scale-110 transition-transform">
                         <i class="fab fa-instagram text-2xl"></i>
@@ -205,7 +235,6 @@
                     <p class="text-sm text-slate-400">Profil optimizasyonu, viral içerikler ve sadık marka inşası.</p>
                 </div>
 
-                <!-- Gayrimenkul -->
                 <div onclick="openAdsPage('realestate')" class="cursor-pointer glass p-6 rounded-2xl group hover:-translate-y-1 transition-all border border-yellow-500/20 hover:border-yellow-400 relative overflow-hidden bg-gradient-to-br from-yellow-500/5 to-transparent">
                     <div class="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center mb-4 text-yellow-400 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(250,204,21,0.2)]">
                         <i class="fas fa-building text-2xl"></i>
@@ -214,7 +243,6 @@
                     <p class="text-sm text-slate-400">Premium mülk satışı için yüksek alım gücüne sahip hedefleme stratejileri.</p>
                 </div>
 
-                <!-- Otomotiv -->
                 <div onclick="openAdsPage('automotive')" class="cursor-pointer glass p-6 rounded-2xl group hover:-translate-y-1 transition-all border border-slate-600/30 hover:border-slate-400 relative overflow-hidden bg-gradient-to-b from-slate-800/50 to-transparent">
                     <div class="w-12 h-12 rounded-xl bg-slate-700/50 flex items-center justify-center mb-4 text-white group-hover:scale-110 transition-transform border border-white/10 shadow-lg">
                         <i class="fas fa-car text-2xl"></i>
@@ -223,7 +251,6 @@
                     <p class="text-sm text-slate-400">Premium araç ve değerli eşyalar için elit kitle kapalı devre satış huni sistemleri.</p>
                 </div>
 
-                <!-- YouTube -->
                 <div onclick="switchPage('youtube')" class="cursor-pointer glass p-6 rounded-2xl group hover:-translate-y-1 transition-all border border-white/5 hover:border-red-500/50 relative overflow-hidden bg-gradient-to-b from-white/[0.02] to-transparent">
                     <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mb-4 text-red-500 group-hover:scale-110 transition-transform">
                         <i class="fab fa-youtube text-2xl"></i>
@@ -268,9 +295,9 @@
                 <div class="w-full lg:w-1/4">
                     <div class="sticky top-24 glass p-6 rounded-2xl border-t border-white/10">
                         <div class="w-16 h-16 mx-auto mb-4 rounded-full p-[2px] bg-gradient-to-tr from-pink-500 to-yellow-500">
-                            <img src="https://ui-avatars.com/api/?name=Emircan+Özer&background=0a0f1c&color=fff&size=100" class="rounded-full w-full h-full object-cover border-2 border-dark" alt="Profile">
+                            <img src="https://ui-avatars.com/api/?name=Emir+Can+Özer&background=0a0f1c&color=fff&size=100" class="rounded-full w-full h-full object-cover border-2 border-dark" alt="Profile">
                         </div>
-                        <h3 class="text-lg font-bold mb-1 text-center text-white">Emircan Özer</h3>
+                        <h3 class="text-lg font-bold mb-1 text-center text-white">Emir Can Özer</h3>
                         <p class="text-primary text-xs font-semibold mb-4 text-center">Sosyal Büyüme Uzmanı</p>
                         <div class="text-slate-400 text-xs space-y-3 leading-relaxed">
                             <p>Instagram'ı yalnızca bir vitrin değil, algoritmaları lehimize çalıştırarak satışları katlayan sistematik bir büyüme motoru olarak kurguluyorum.</p>
@@ -358,7 +385,8 @@
             timer = setTimeout(typeWriter, spd);
         }
 
-        function switchPage(pageId) {
+        // HISTORY API İLE TARAYICI GERİ/İLERİ TUŞU DESTEĞİ
+        function switchPage(pageId, pushToHistory = true) {
             document.querySelectorAll('.page-section').forEach(el => {
                 el.classList.add('hidden');
                 el.classList.remove('opacity-100');
@@ -372,20 +400,31 @@
                     target.classList.add('opacity-100');
                 }, 20);
                 window.scrollTo(0, 0);
+                
+                // URL'i güncelle ve History'ye ekle
+                if (pushToHistory) {
+                    history.pushState({ page: pageId }, '', '#' + pageId);
+                }
             }
         }
+
+        // Geri Dön butonunu yakalama (Popstate)
+        window.addEventListener('popstate', (event) => {
+            const pageId = event.state && event.state.page ? event.state.page : 'home';
+            switchPage(pageId, false);
+        });
 
         const projectDemos = [
             { id: 1, title: "Modern E-Commerce", desc: "Ürün listeleme ve sepete ekleme akışı tasarımı.", html: `<div class="bg-white rounded-xl overflow-hidden text-black w-72 shadow-2xl"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80" class="w-full h-48 object-cover"><div class="p-4"><span class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">Premium Sneaker</span><h3 class="font-bold text-lg mt-1">Koşu Ayakkabısı Pro</h3><p class="text-gray-500 text-xs mt-1">Dinamik taban ve nefes alan yapı.</p><div class="mt-4 flex items-center justify-between"><span class="font-bold text-xl">₺1.299</span><button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-indigo-700 transition">Ekle</button></div></div></div>` },
             { id: 2, title: "Mikro Etkileşimler", desc: "Kullanıcı deneyimini artıran hover efektleri.", html: `<div class="flex gap-4"><div class="bg-white/5 w-32 h-32 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:-translate-y-2 border border-white/10 hover:border-indigo-500 transition-all duration-300"><i class="fas fa-arrow-up mb-2"></i><span class="text-xs font-bold">Kaydır</span></div><div class="bg-white/5 w-32 h-32 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:scale-105 border border-white/10 hover:border-pink-500 transition-all duration-300"><i class="fas fa-expand mb-2"></i><span class="text-xs font-bold">Büyüt</span></div></div>` },
             { id: 3, title: "SaaS Toggle Modülü", desc: "Karanlık mod ve bildirim ayarları arayüzü.", html: `<div class="flex flex-col gap-6 items-center bg-[#0f172a] p-8 rounded-2xl border border-white/10 shadow-2xl"><div class="flex items-center justify-between w-56 text-white text-sm"><span class="font-medium">Karanlık Mod</span><div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in"><input type="checkbox" name="toggle" id="toggle1" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-slate-600 appearance-none cursor-pointer transition-all duration-300 z-10"/><label for="toggle1" class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-600 cursor-pointer transition-colors duration-300"></label></div></div><div class="flex items-center justify-between w-56 text-white text-sm"><span class="font-medium">Bildirimler</span><div class="relative inline-block w-10 mr-2 align-middle select-none"><input type="checkbox" checked id="toggle2" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-all"/><label for="toggle2" class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-600 cursor-pointer transition-colors"></label></div></div></div>` },
             { id: 4, title: "SaaS Fiyatlandırma", desc: "Yüksek dönüşüm odaklı paket seçim kartı.", html: `<div class="bg-[#0f172a] p-8 rounded-2xl w-72 relative overflow-hidden border border-primary"><div class="absolute top-0 right-0 bg-primary text-[10px] font-bold px-3 py-1 rounded-bl-xl tracking-wider">ÖNERİLEN</div><h3 class="text-lg font-bold mb-1 text-white">Pro Paket</h3><div class="text-3xl font-bold mb-4 text-white">₺499<span class="text-xs text-slate-400 font-normal">/ay</span></div><ul class="text-left text-sm text-slate-300 space-y-3 mb-6"><li><i class="fas fa-check text-indigo-400 mr-2"></i> Sınırsız Erişim</li><li><i class="fas fa-check text-indigo-400 mr-2"></i> İleri Düzey Analitik</li><li><i class="fas fa-check text-indigo-400 mr-2"></i> 7/24 Öncelikli Destek</li></ul><button class="w-full py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:bg-indigo-600 transition-colors">Başla</button></div>` },
-            { id: 5, title: "Modern Profil Kartı", desc: "Minimal sosyal medya takım/yazar kartı.", html: `<div class="bg-slate-900 w-64 rounded-2xl overflow-hidden shadow-xl text-center pb-6 border border-white/5"><div class="h-20 bg-gradient-to-r from-indigo-500 to-purple-600"></div><img src="https://ui-avatars.com/api/?name=E&background=0a0f1c&color=fff" class="w-16 h-16 rounded-full mx-auto -mt-8 border-4 border-slate-900"><h3 class="font-bold text-lg mt-2 text-white">Emircan</h3><p class="text-indigo-400 text-xs mb-4 font-medium">Girişimci & Yazılımcı</p><div class="flex justify-center gap-4 text-slate-400 text-sm"><i class="fab fa-twitter hover:text-white cursor-pointer transition-colors"></i><i class="fab fa-github hover:text-white cursor-pointer transition-colors"></i><i class="fab fa-linkedin hover:text-white cursor-pointer transition-colors"></i></div></div>` },
-            { id: 6, title: "Finans Kartı UI", desc: "Ödeme adımında güven veren dijital kart.", html: `<div class="w-80 h-48 bg-gradient-to-tr from-slate-800 to-slate-900 rounded-xl p-6 text-white shadow-2xl relative overflow-hidden border border-white/10"><div class="absolute -right-10 -top-10 w-32 h-32 bg-indigo-500/20 rounded-full blur-2xl"></div><div class="flex justify-between items-center mb-6"><i class="fas fa-microchip text-2xl text-yellow-500 opacity-80"></i><i class="fab fa-cc-visa text-3xl opacity-80"></i></div><div class="font-mono text-xl tracking-widest mb-2 font-medium">**** **** **** 1234</div><div class="flex justify-between text-xs uppercase text-slate-400 tracking-wider"><span>Emircan Özer</span><span>12/26</span></div></div>` },
+            { id: 5, title: "Modern Profil Kartı", desc: "Minimal sosyal medya takım/yazar kartı.", html: `<div class="bg-slate-900 w-64 rounded-2xl overflow-hidden shadow-xl text-center pb-6 border border-white/5"><div class="h-20 bg-gradient-to-r from-indigo-500 to-purple-600"></div><img src="https://ui-avatars.com/api/?name=E&background=0a0f1c&color=fff" class="w-16 h-16 rounded-full mx-auto -mt-8 border-4 border-slate-900"><h3 class="font-bold text-lg mt-2 text-white">Emir Can</h3><p class="text-indigo-400 text-xs mb-4 font-medium">Girişimci & Yazılımcı</p><div class="flex justify-center gap-4 text-slate-400 text-sm"><i class="fab fa-twitter hover:text-white cursor-pointer transition-colors"></i><i class="fab fa-github hover:text-white cursor-pointer transition-colors"></i><i class="fab fa-linkedin hover:text-white cursor-pointer transition-colors"></i></div></div>` },
+            { id: 6, title: "Finans Kartı UI", desc: "Ödeme adımında güven veren dijital kart.", html: `<div class="w-80 h-48 bg-gradient-to-tr from-slate-800 to-slate-900 rounded-xl p-6 text-white shadow-2xl relative overflow-hidden border border-white/10"><div class="absolute -right-10 -top-10 w-32 h-32 bg-indigo-500/20 rounded-full blur-2xl"></div><div class="flex justify-between items-center mb-6"><i class="fas fa-microchip text-2xl text-yellow-500 opacity-80"></i><i class="fab fa-cc-visa text-3xl opacity-80"></i></div><div class="font-mono text-xl tracking-widest mb-2 font-medium">**** **** **** 1234</div><div class="flex justify-between text-xs uppercase text-slate-400 tracking-wider"><span>Emir Can Özer</span><span>12/26</span></div></div>` },
             { id: 7, title: "Analitik Widget", desc: "Dashboard sistemleri için veri gösterimi.", html: `<div class="bg-slate-900 p-6 rounded-2xl w-64 border border-white/5"><div class="flex justify-between items-center mb-3"><span class="text-slate-400 text-sm font-medium">Aylık Gelir</span><div class="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center"><i class="fas fa-chart-line text-emerald-400 text-xs"></i></div></div><div class="text-3xl font-bold text-white mb-1">₺42,500</div><div class="text-emerald-400 text-xs font-medium"><i class="fas fa-arrow-up mr-1"></i> %14.5 artış</div></div>`},
             { id: 8, title: "Giriş Formu", desc: "Sade, dönüşüm odaklı temiz login arayüzü.", html: `<div class="bg-slate-900 p-8 rounded-2xl w-80 border border-white/5"><h3 class="text-xl font-bold mb-6 text-white">Hesabınıza Girin</h3><input type="text" placeholder="E-posta adresi" class="w-full bg-slate-800 p-3 rounded-lg mb-3 text-sm border border-transparent focus:border-indigo-500 outline-none text-white transition-colors"><input type="password" placeholder="Şifre" class="w-full bg-slate-800 p-3 rounded-lg mb-5 text-sm border border-transparent focus:border-indigo-500 outline-none text-white transition-colors"><button class="w-full bg-white text-dark py-3 rounded-lg text-sm font-bold hover:bg-slate-200 transition-colors">Giriş Yap</button></div>`},
             { id: 9, title: "Medya Oynatıcı", desc: "Şık arka plan bulanıklığıyla müzik arayüzü.", html: `<div class="bg-slate-900 p-6 rounded-3xl w-64 flex flex-col items-center border border-white/5 relative overflow-hidden"><div class="absolute inset-0 bg-indigo-500/10 filter blur-xl"></div><img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=200&q=80" class="w-32 h-32 rounded-2xl mb-5 shadow-lg object-cover relative z-10"><h3 class="font-bold text-base text-white relative z-10">Gece Sürüşü</h3><p class="text-slate-400 text-xs mb-5 relative z-10">Lofi Beats</p><div class="flex gap-6 items-center relative z-10"><i class="fas fa-backward text-slate-400 hover:text-white cursor-pointer transition-colors"></i><div class="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:scale-105 transition-transform"><i class="fas fa-play text-dark ml-1"></i></div><i class="fas fa-forward text-slate-400 hover:text-white cursor-pointer transition-colors"></i></div></div>`},
-            { id: 10, title: "Destek Mesajı", desc: "Müşteri panelleri için canlı sohbet balonu.", html: `<div class="bg-slate-900 w-80 h-64 rounded-2xl flex flex-col p-4 border border-white/5"><div class="flex-grow flex flex-col gap-3 justify-end"><div class="bg-slate-800 p-3 rounded-2xl rounded-bl-sm self-start max-w-[85%] text-xs text-slate-200">Merhaba Emircan, yeni projemiz için detayları görüştük mü?</div><div class="bg-indigo-600 p-3 rounded-2xl rounded-br-sm self-end max-w-[85%] text-xs text-white">Evet, harika görünüyor! Hemen başlıyorum.</div></div><div class="mt-4 flex gap-2"><input type="text" placeholder="Mesajınız..." class="flex-grow bg-slate-800 rounded-xl px-4 py-2 text-xs outline-none text-white focus:ring-1 ring-indigo-500"><button class="bg-white w-8 h-8 rounded-xl flex items-center justify-center text-dark hover:bg-slate-200 transition-colors"><i class="fas fa-paper-plane text-xs"></i></button></div></div>`},
+            { id: 10, title: "Destek Mesajı", desc: "Müşteri panelleri için canlı sohbet balonu.", html: `<div class="bg-slate-900 w-80 h-64 rounded-2xl flex flex-col p-4 border border-white/5"><div class="flex-grow flex flex-col gap-3 justify-end"><div class="bg-slate-800 p-3 rounded-2xl rounded-bl-sm self-start max-w-[85%] text-xs text-slate-200">Merhaba Emir Can, yeni projemiz için detayları görüştük mü?</div><div class="bg-indigo-600 p-3 rounded-2xl rounded-br-sm self-end max-w-[85%] text-xs text-white">Evet, harika görünüyor! Hemen başlıyorum.</div></div><div class="mt-4 flex gap-2"><input type="text" placeholder="Mesajınız..." class="flex-grow bg-slate-800 rounded-xl px-4 py-2 text-xs outline-none text-white focus:ring-1 ring-indigo-500"><button class="bg-white w-8 h-8 rounded-xl flex items-center justify-center text-dark hover:bg-slate-200 transition-colors"><i class="fas fa-paper-plane text-xs"></i></button></div></div>`},
             { id: 11, title: "Kanban Board", desc: "Yönetim araçları için sürüklenebilir görev kartı.", html: `<div class="bg-slate-900 p-5 rounded-2xl w-64 border-l-4 border-emerald-500 border-y border-r border-white/5 shadow-lg"><div class="flex justify-between items-start mb-2"><h4 class="font-bold text-sm text-white">Arayüz Optimizasyonu</h4><i class="fas fa-ellipsis-h text-slate-500 cursor-pointer hover:text-white"></i></div><p class="text-xs text-slate-400 mb-4 line-clamp-2">Kullanıcı deneyimini iyileştirmek için mobil menü butonları düzenlenecek.</p><div class="flex justify-between items-center"><span class="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded-md">Tamamlandı</span><img src="https://ui-avatars.com/api/?name=E&background=10b981&color=fff" class="w-6 h-6 rounded-full border border-dark"></div></div>`},
             { id: 12, title: "Minimal Hava Durumu", desc: "Sade, temiz ve direkt bilgi odaklı widget.", html: `<div class="bg-gradient-to-b from-sky-400 to-blue-600 p-6 rounded-3xl w-56 text-white text-center shadow-xl border border-white/20"><h3 class="font-bold text-base mb-1">İstanbul</h3><p class="text-sky-100 text-xs mb-4 font-medium tracking-wide">Açık & Güneşli</p><i class="fas fa-sun text-5xl text-yellow-300 mb-3 drop-shadow-md"></i><div class="text-5xl font-light tracking-tighter">24°</div></div>`}
         ];
@@ -394,7 +433,7 @@
             const grid = document.getElementById('projects-grid');
             projectDemos.forEach(demo => {
                 grid.innerHTML += `
-                    <div onclick="openDemo(${demo.id})" class="glass p-6 rounded-2xl cursor-pointer group hover:-translate-y-1 transition-all border border-white/5 hover:border-primary/50 flex flex-col h-full bg-gradient-to-b from-white/[0.02] to-transparent">
+                    <div onclick="openDemo(${demo.id})" class="glass p-6 rounded-2xl cursor-pointer group hover:-translate-y-1 transition-all border border-[#C0C0C0]/30 hover:border-[#E8E8E8] shadow-[0_0_15px_rgba(192,192,192,0.1)] flex flex-col h-full bg-gradient-to-b from-white/[0.02] to-transparent">
                         <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform text-white">
                             <i class="fas fa-code text-sm"></i>
                         </div>
@@ -421,7 +460,7 @@
                 { title: "Yapay Zeka (AI) Kitle Hedefleme", desc: "Markanıza daha önce ödeme yapmış müşterilere benzeyen, satın alma potansiyeli zirvedeki kitleleri algoritmik olarak buluyoruz.", icon: "fa-robot" },
                 { title: "Nitelikli (High-Ticket) Lead Üretimi", desc: "Emlak, sağlık veya lüks danışmanlık hizmetleriniz için sadece fiyata değil değere odaklanan müşteri formları topluyoruz.", icon: "fa-funnel-dollar" },
                 { title: "İkna Odaklı Yeniden Pazarlama", desc: "Sitenizi terk eden ancak ilgisi olan kullanıcıları, karşı konulamaz tekliflerle dijital platformlarda takip edip sepete çekiyoruz.", icon: "fa-bullseye" },
-                { title: "Dinamik Reklam Kreatifleri (DCO)", desc: "Kullanıcı davranışına göre görsel ve metinleri anlık değiştirerek reklam tıklama maliyetlerinizi (CPC) optimize ediyoruz.", icon: "fa-layer-group" }
+                { title: "Dinamik Reklam Kreatifleri (DCO)", desc: "Kullanıcı davranışına göre görsel ve metinleri anlık değiştirerek reklam tıklama maliyetlerinizi optimize ediyoruz.", icon: "fa-layer-group" }
             ],
             google: [
                 { title: "Performance Max (PMax) Kurulumu", desc: "Tek kampanya üzerinden Arama Ağı, YouTube, Gmail ve Haritalar'daki en kârlı müşterilere Google yapay zekası ile ulaşıyoruz.", icon: "fa-bolt" },
@@ -470,7 +509,7 @@
                 const textColor = isGold ? 'text-yellow-400' : 'text-slate-300';
                 
                 grid.innerHTML += `
-                    <a href="https://www.instagram.com/bizzitr/" target="_blank" class="glass rounded-2xl p-6 group transition-all border border-white/5 ${hoverBorder} flex items-center justify-between relative overflow-hidden md:col-span-2 lg:col-span-3 mb-2">
+                    <a href="https://www.instagram.com/bizzitr/" target="_blank" class="glass rounded-2xl p-6 group transition-all border border-white/5 ${hoverBorder} flex items-center justify-between relative overflow-hidden md:col-span-2 lg:col-span-3 mb-2 shadow-lg">
                         <div class="absolute inset-0 bg-gradient-to-r ${gradColors} opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
                         
                         <div class="flex items-center gap-5 z-10">
@@ -511,11 +550,11 @@
             
             // Kompakt ve şık yatay @wasdoms kartı (2 Kolon Genişliğinde)
             grid.innerHTML += `
-                <a href="https://www.instagram.com/wasdoms/" target="_blank" class="glass rounded-2xl p-6 group transition-all border border-white/5 hover:border-pink-500/40 flex items-center justify-between relative overflow-hidden sm:col-span-2">
+                <a href="https://www.instagram.com/wasdoms/" target="_blank" class="glass rounded-2xl p-6 group transition-all border border-white/5 hover:border-pink-500/40 flex items-center justify-between relative overflow-hidden sm:col-span-2 shadow-lg">
                      <div class="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
                      
                      <div class="flex items-center gap-5 z-10">
-                         <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 flex items-center justify-center shadow-lg flex-shrink-0">
+                         <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 flex items-center justify-center shadow-lg flex-shrink-0 border-2 border-dark">
                             <i class="fab fa-instagram text-2xl text-white"></i>
                          </div>
                          <div>
@@ -579,10 +618,20 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // URL Hash Kontrolü (Sayfa ilk yüklendiğinde yönlendirme)
+            const hash = window.location.hash.replace('#', '');
+            const initialPage = hash && document.getElementById(hash + '-page') ? hash : 'home';
+            
             renderProjects();
             renderInstagram();
             renderYoutube();
             typeWriter();
+            
+            // Başlangıç sayfasını History push etmeden açıyoruz
+            switchPage(initialPage, false);
+            if (!hash) {
+                history.replaceState({ page: 'home' }, '', '#home');
+            }
         });
     </script>
 </body>
