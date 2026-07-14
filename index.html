@@ -216,12 +216,13 @@
         </div>
     </div>
 
-    <!-- Reklam Platformları Detay Sayfası -->
+    <!-- Reklam Platformları (Meta, Google, Real Estate, Auto) Detay Sayfası -->
     <div id="ads-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
         <div class="max-w-6xl w-full mx-auto my-auto">
             <button onclick="switchPage('social')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Medya Menüsüne Dön</button>
             <h2 id="ads-title" class="text-4xl font-bold mb-12 text-center">Platform</h2>
-            <div id="ads-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            <!-- Grid'e 'grid-flow-row-dense' eklendi ki 2 satırlık uzun elemanlar boşluk yaratmasın -->
+            <div id="ads-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 grid-flow-row-dense"></div>
         </div>
     </div>
 
@@ -248,25 +249,22 @@
         </div>
     </div>
 
-    <!-- YENİ: YouTube Sayfası -->
+    <!-- YouTube Sayfası -->
     <div id="youtube-page" class="page-section hidden opacity-0 transition-opacity duration-500 relative z-10 min-h-screen flex flex-col pt-24 px-6 pb-12">
         <div class="max-w-6xl w-full mx-auto my-auto">
             <button onclick="switchPage('social')" class="mb-8 text-gray-400 hover:text-white flex items-center gap-2"><i class="fas fa-arrow-left"></i> Medya Menüsüne Dön</button>
             <div class="flex flex-col lg:flex-row gap-8">
                 
-                <!-- Sol Taraf: 5 Adet Bilgi Tabı -->
                 <div class="w-full lg:w-3/4">
                     <h2 class="text-3xl font-bold mb-6 flex items-center gap-3"><i class="fab fa-youtube text-red-600"></i> YouTube Yönetim Stratejileri</h2>
                     <div id="youtube-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
                 </div>
                 
-                <!-- Sağ Taraf: Örnek Editler (3 Adet Alt Alta) -->
                 <div class="w-full lg:w-1/4 relative">
                     <div class="sticky top-24 glass p-6 rounded-3xl border-t-4 border-red-600 shadow-xl">
                         <h3 class="text-xl font-bold mb-4 text-center border-b border-white/10 pb-3">Örnek Editler</h3>
                         
                         <div class="flex flex-col gap-4">
-                            <!-- Link 1 (Dolu) -->
                             <a href="https://www.youtube.com/watch?v=pfZ6Lievy40" target="_blank" class="glass p-4 rounded-xl flex items-center gap-4 group hover:border-red-600/50 transition-all hover:bg-white/5">
                                 <i class="fab fa-youtube text-3xl text-red-600 group-hover:scale-110 transition-transform"></i>
                                 <div class="flex flex-col">
@@ -275,7 +273,6 @@
                                 </div>
                             </a>
                             
-                            <!-- Link 2 (Boş) -->
                             <a href="#" class="glass p-4 rounded-xl flex items-center gap-4 group hover:border-red-600/50 transition-all hover:bg-white/5">
                                 <i class="fab fa-youtube text-3xl text-red-600 group-hover:scale-110 transition-transform"></i>
                                 <div class="flex flex-col">
@@ -284,7 +281,6 @@
                                 </div>
                             </a>
                             
-                            <!-- Link 3 (Boş) -->
                             <a href="#" class="glass p-4 rounded-xl flex items-center gap-4 group hover:border-red-600/50 transition-all hover:bg-white/5">
                                 <i class="fab fa-youtube text-3xl text-red-600 group-hover:scale-110 transition-transform"></i>
                                 <div class="flex flex-col">
@@ -293,7 +289,6 @@
                                 </div>
                             </a>
                         </div>
-                        
                     </div>
                 </div>
             </div>
@@ -421,9 +416,39 @@
             if(platform === 'realestate') iconColorClass = 'text-yellow-400';
             if(platform === 'automotive') iconColorClass = 'text-gray-300';
             
+            // YENİ: Gayrimenkul ve Otomotiv için bizzitr Instagram Kartı
+            if (platform === 'realestate' || platform === 'automotive') {
+                const isGold = platform === 'realestate';
+                const gradColors = isGold ? 'from-yellow-400 to-yellow-600' : 'from-gray-400 to-gray-600';
+                const hoverBorder = isGold ? 'hover:border-yellow-400/50' : 'hover:border-gray-400/50';
+                const btnHover = isGold ? 'group-hover:bg-yellow-500/30' : 'group-hover:bg-gray-500/30';
+                
+                grid.innerHTML += `
+                    <a href="https://www.instagram.com/bizzitr/" target="_blank" class="sm:row-span-2 min-h-[336px] glass rounded-2xl overflow-hidden group transition-all border border-transparent ${hoverBorder} flex flex-col relative shadow-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=500&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60">
+                        
+                        <div class="relative z-20 p-6 flex flex-col h-full justify-between">
+                            <div>
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-tr ${gradColors} flex items-center justify-center mb-4 shadow-lg">
+                                    <i class="fab fa-instagram text-2xl text-white"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-1">@bizzitr</h3>
+                                <p class="text-sm text-gray-300">Örnek projelerimizi ve satışa dönen stratejilerimizi canlı olarak inceleyin.</p>
+                            </div>
+                            
+                            <div class="mt-4 bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/10 flex justify-between items-center ${btnHover} transition-colors">
+                                <span class="text-sm font-bold text-white">Sayfamı ziyaret edin</span>
+                                <i class="fas fa-arrow-right text-white group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }
+
             (adsData[platform] || []).forEach(ad => {
                 grid.innerHTML += `
-                    <div class="glass p-8 rounded-2xl text-center group hover:-translate-y-2 hover:border-primary border border-transparent transition-all duration-300">
+                    <div class="glass p-8 rounded-2xl text-center group hover:-translate-y-2 hover:border-primary border border-transparent transition-all duration-300 flex flex-col justify-center h-full">
                         <div class="w-16 h-16 mx-auto rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                             <i class="fas ${ad.icon} text-3xl ${iconColorClass}"></i>
                         </div>
@@ -482,7 +507,6 @@
             });
         }
 
-        // YENİ: YouTube Grid Doldurma Fonksiyonu
         function renderYoutube() {
             const grid = document.getElementById('youtube-grid');
             grid.innerHTML = '';
@@ -511,7 +535,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             renderProjects();
             renderInstagram();
-            renderYoutube(); // YouTube fonksiyonu çağrıldı
+            renderYoutube();
             typeWriter();
         });
     </script>
